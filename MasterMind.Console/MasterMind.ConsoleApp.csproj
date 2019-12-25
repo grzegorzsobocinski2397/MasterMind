@@ -46,7 +46,8 @@
     <Compile Include="ConsoleGameHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StaticConsoleTexts.Designer.cs">
+    <Compile Include="Resources\DynamicConsoleTexts.cs" />
+    <Compile Include="Resources\StaticConsoleTexts.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>StaticConsoleTexts.resx</DependentUpon>
@@ -62,7 +63,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="StaticConsoleTexts.resx">
+    <EmbeddedResource Include="Resources\StaticConsoleTexts.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>StaticConsoleTexts.Designer.cs</LastGenOutput>
     </EmbeddedResource>

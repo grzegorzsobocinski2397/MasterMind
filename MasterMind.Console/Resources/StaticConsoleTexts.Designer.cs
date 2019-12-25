@@ -61,7 +61,12 @@ namespace MasterMind.ConsoleApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \nPierwszy gracz ustala kod (sekretny) składający się z 4 kolorów -kolejność ma znaczenie, kolory mogą się powtarzać. \n1) Podaje swoją kombinację 4 kolorów w odpowiedniej kolejności \na. Pierwszy gracz weryfikuje propozycję i odpowiada, podając liczbę trafień dokładnych (tzn. właściwy kolor na właściwej pozycji - odpowiednia liczba kółek czarnych) oraz trafień niedokładnych (tzn. właściwy kolor na niewłaściwej pozycji - odpowiednia liczba kółek białych) \nb. Kroki powyższe powtarzane są wielokrotnie \nc. D [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to 
+        ///Pierwszy gracz ustala kod (sekretny) składający się z 4 kolorów -kolejność ma znaczenie, kolory mogą się powtarzać. 
+        ///1) Podaje swoją kombinację 4 kolorów w odpowiedniej kolejności 
+        ///a. Pierwszy gracz weryfikuje propozycję i odpowiada, podając liczbę trafień dokładnych (tzn. właściwy kolor na właściwej pozycji - odpowiednia liczba kółek czarnych) oraz trafień niedokładnych (tzn. właściwy kolor na niewłaściwej pozycji - odpowiednia liczba kółek białych) 
+        ///b. Kroki powyższe powtarzane są wielokrotnie 
+        ///c. D [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string GameRules {
             get {
@@ -70,7 +75,11 @@ namespace MasterMind.ConsoleApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to \nWybierz opcję: \n1 - rozpoczęcie gry.\n2 - wyświetlenie zasad gry.\n.
+        ///   Looks up a localized string similar to 
+        ///Wybierz opcję: 
+        ///1 - rozpoczęcie gry.
+        ///2 - wyświetlenie zasad gry.
+        ///.
         /// </summary>
         internal static string Options {
             get {
@@ -79,7 +88,8 @@ namespace MasterMind.ConsoleApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Chcesz spróbować ponownie? Wciśnij Y aby zatwierdzić.
+        ///   Looks up a localized string similar to 
+        ///Chcesz spróbować ponownie? Wciśnij Y aby zatwierdzić.
         /// </summary>
         internal static string PlayAgain {
             get {
@@ -88,7 +98,8 @@ namespace MasterMind.ConsoleApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Proszę spróbować jeszcze raz..
+        ///   Looks up a localized string similar to 
+        ///Proszę spróbować jeszcze raz..
         /// </summary>
         internal static string TryAgain {
             get {
@@ -106,7 +117,8 @@ namespace MasterMind.ConsoleApp.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wrong color! Please try again..
+        ///   Looks up a localized string similar to 
+        ///Wrong color! Please try again..
         /// </summary>
         internal static string WrongColor {
             get {

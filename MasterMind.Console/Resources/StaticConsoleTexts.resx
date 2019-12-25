@@ -118,21 +118,35 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="GameRules" xml:space="preserve">
-    <value>\nPierwszy gracz ustala kod (sekretny) składający się z 4 kolorów -kolejność ma znaczenie, kolory mogą się powtarzać. \n1) Podaje swoją kombinację 4 kolorów w odpowiedniej kolejności \na. Pierwszy gracz weryfikuje propozycję i odpowiada, podając liczbę trafień dokładnych (tzn. właściwy kolor na właściwej pozycji - odpowiednia liczba kółek czarnych) oraz trafień niedokładnych (tzn. właściwy kolor na niewłaściwej pozycji - odpowiednia liczba kółek białych) \nb. Kroki powyższe powtarzane są wielokrotnie \nc. Drugi gracz próbuje odgadnąć sekretny kod:\n2) Gra kończy się, gdy drugi gracz odgadnie sekretny kod\n3) Dobry gracz po 4-5 próbach potrafi odgadnąć sekretny kod (w zależności od stosowanej strategii - strategia bazuje na dobrym początku i odpowiednim wnioskowaniu w dalszych krokach)</value>
+    <value>
+Pierwszy gracz ustala kod (sekretny) składający się z 4 kolorów -kolejność ma znaczenie, kolory mogą się powtarzać. 
+1) Podaje swoją kombinację 4 kolorów w odpowiedniej kolejności 
+a. Pierwszy gracz weryfikuje propozycję i odpowiada, podając liczbę trafień dokładnych (tzn. właściwy kolor na właściwej pozycji - odpowiednia liczba kółek czarnych) oraz trafień niedokładnych (tzn. właściwy kolor na niewłaściwej pozycji - odpowiednia liczba kółek białych) 
+b. Kroki powyższe powtarzane są wielokrotnie 
+c. Drugi gracz próbuje odgadnąć sekretny kod:
+2) Gra kończy się, gdy drugi gracz odgadnie sekretny kod
+3) Dobry gracz po 4-5 próbach potrafi odgadnąć sekretny kod (w zależności od stosowanej strategii - strategia bazuje na dobrym początku i odpowiednim wnioskowaniu w dalszych krokach)</value>
   </data>
   <data name="Options" xml:space="preserve">
-    <value>\nWybierz opcję: \n1 - rozpoczęcie gry.\n2 - wyświetlenie zasad gry.\n</value>
+    <value>
+Wybierz opcję: 
+1 - rozpoczęcie gry.
+2 - wyświetlenie zasad gry.
+</value>
   </data>
   <data name="PlayAgain" xml:space="preserve">
-    <value>Chcesz spróbować ponownie? Wciśnij Y aby zatwierdzić</value>
+    <value>
+Chcesz spróbować ponownie? Wciśnij Y aby zatwierdzić</value>
   </data>
   <data name="TryAgain" xml:space="preserve">
-    <value>Proszę spróbować jeszcze raz.</value>
+    <value>
+Proszę spróbować jeszcze raz.</value>
   </data>
   <data name="WelcomeScreen" xml:space="preserve">
     <value>Witaj w grze Mastermind!</value>
   </data>
   <data name="WrongColor" xml:space="preserve">
-    <value>Wrong color! Please try again.</value>
+    <value>
+Wrong color! Please try again.</value>
   </data>
 </root>
