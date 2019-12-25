@@ -5,8 +5,8 @@
     /// </summary>
     public class Answers
     {
-        public static char Black { get; } = 'b';
-        public static char White { get; } = 'w';
-        public static char Empty { get; } = 'e';
+        public const char CORRECT_ANSWER = '1';
+        public const char COLOR_EXISTS = '0';
+        public const char WRONG_GUESS = 'e';
     }
 }

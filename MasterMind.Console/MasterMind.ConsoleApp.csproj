@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BE69A337-B6BF-4842-8038-3F86C8116000}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>MasterMind.Console</RootNamespace>
-    <AssemblyName>MasterMind.Console</AssemblyName>
+    <RootNamespace>MasterMind.ConsoleApp</RootNamespace>
+    <AssemblyName>MasterMind.ConsoleApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,8 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConsoleGameHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StaticConsoleTexts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StaticConsoleTexts.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -54,6 +60,12 @@
       <Project>{22ed07f2-53c9-4e37-af09-dabe22c68ac9}</Project>
       <Name>MasterMind.Library</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="StaticConsoleTexts.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>StaticConsoleTexts.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

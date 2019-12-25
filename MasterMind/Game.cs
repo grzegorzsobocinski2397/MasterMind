@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace MasterMind
 {
+    /// <summary>
+    /// Contains basic logic of the Mastermind game.
+    /// </summary>
     public class Game
     {
         #region Const Fields
@@ -18,7 +21,7 @@ namespace MasterMind
         /// </summary>
         private const int TIME_LIMIT = 9;
 
-        #endregion Readonly Fields
+        #endregion Const Fields
 
         #region Public Properties
 
@@ -35,7 +38,7 @@ namespace MasterMind
         /// <summary>
         /// Contains all available colors in the game.
         /// </summary>
-        public char[] AvailableColors { get; } = { Colors.Red, Colors.Green, Colors.Blue, Colors.Cyan, Colors.Magenta, Colors.Yellow };
+        public char[] AvailableColors { get; } = { Colors.RED, Colors.GREEN, Colors.BLUE, Colors.CYAN, Colors.MAGENTA, Colors.YELLOW };
 
         /// <summary>
         /// Code that is currently used in the game.
@@ -52,6 +55,12 @@ namespace MasterMind
         /// </summary>
         public GameStatus Status { get; set; } = GameStatus.Unstarted;
 
+        /// <summary>
+        /// Contains basic information about the user.
+        /// </summary>
+
+        public User User { get; set; }
+
         #endregion Public Properties
 
         #region Constructors
@@ -65,6 +74,7 @@ namespace MasterMind
         {
             CodeLength = codeLength;
             TimeLimit = timeLimit;
+            User = new User();
             StartGame();
         }
 
@@ -75,6 +85,7 @@ namespace MasterMind
         {
             CodeLength = CODE_LENGTH;
             TimeLimit = TIME_LIMIT;
+            User = new User();
             StartGame();
         }
 
@@ -94,7 +105,7 @@ namespace MasterMind
         /// Check how the user guess matches <see cref="Code"/>.
         /// </summary>
         /// <param name="input">User's input.</param>
-        public string CheckCode(string input)
+        public void CheckCode(string input)
         {
             char[] userColors = input.ToCharArray();
             char[] code = Code.ToCharArray();
@@ -104,31 +115,35 @@ namespace MasterMind
             {
                 if (userColors[index] == code[index])
                 {
-                    answer[index] = Answers.Black;
+                    answer[index] = Answers.CORRECT_ANSWER;
                 }
-                else if (userColors.Contains(userColors[index]))
+                else if (code.Contains(userColors[index]))
                 {
-                    answer[index] = Answers.White;
+                    answer[index] = Answers.COLOR_EXISTS;
                 }
                 else
                 {
-                    answer[index] = Answers.Empty;
+                    answer[index] = Answers.WRONG_GUESS;
                 }
             }
 
-            if (answer.All(c => c == Answers.Black))
+            if (answer.All(c => c == Answers.CORRECT_ANSWER))
             {
                 Status = GameStatus.Won;
+                User.GamesWon++;
             }
 
             if (Round > TimeLimit)
             {
                 Status = GameStatus.Lost;
+                User.GamesLost++;
             }
 
             Round++;
 
-            return RandomizeArray(answer);
+            string output = RandomizeArray(answer);
+
+            User.SaveRound(userColors, output.ToCharArray());
         }
 
         #endregion Public Methods
@@ -151,6 +166,7 @@ namespace MasterMind
             Status = GameStatus.Ongoing;
             Code = RandomizeArray(AvailableColors);
             Round = 0;
+            User.ResetAnswers();
         }
 
         #endregion Private Members
