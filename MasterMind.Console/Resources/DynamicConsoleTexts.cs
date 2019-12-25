@@ -58,7 +58,7 @@
         /// <returns>Information text about previous guess.</returns>
         public static string GetAnswerOutput(int correctAnswersCount, int correctColorsCount, int badAnswerCount)
         {
-            return $"{correctAnswersCount} poprawnie odganiętych pozycji i kolorów, {correctColorsCount} - poprawnie odgadniętych kolorów, {badAnswerCount} - złych odpowiedzi";
+            return $" {correctAnswersCount} poprawnie odganiętych pozycji i kolorów, {correctColorsCount} - poprawnie odgadniętych kolorów, {badAnswerCount} - złych odpowiedzi";
         }
 
         #endregion Public Static Methods
