@@ -10,4 +10,7 @@
 
     <Color x:Key="ButtonForeground">#1b3344</Color>
     <SolidColorBrush x:Key="ButtonForegroundBrush" Color="{StaticResource ButtonForeground}" />
+
+    <Color x:Key="FontForeground">#272727</Color>
+    <SolidColorBrush x:Key="FontForegroundBrush" Color="{StaticResource FontForeground}" />
 </ResourceDictionary>

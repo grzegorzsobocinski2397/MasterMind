@@ -5,7 +5,7 @@
 
     <!--  Default font for this application  -->
     <Style x:Key="BaseStyle" TargetType="{x:Type Control}">
-        <Setter Property="FontFamily" Value="Arial" />
+        <Setter Property="FontFamily" Value="Calibri" />
         <Setter Property="FontSize" Value="{StaticResource FontSizeRegular}" />
     </Style>
     

@@ -16,24 +16,8 @@ namespace MasterMind.WPF.ViewModels
         /// The window for this view model
         /// </summary>
         private readonly Window window;
-        /// <summary>
-        /// Radius of the edges
-        /// </summary>
-        private readonly int windowCorner = 10;
-        /// <summary>
-        /// Outer margin for the drop shadow
-        /// </summary>
-        private readonly int outerMargin = 10;
         #endregion
         #region Public Properties
-        /// <summary>
-        /// Outer margin for the drop shadow
-        /// </summary>
-        public Thickness OuterMarginThickness => new Thickness(outerMargin);
-        /// <summary>
-        /// Radius of the edges
-        /// </summary>
-        public CornerRadius WindowCornerRadius => new CornerRadius(windowCorner);
         /// <summary>
         /// Current page being displayed in the application.
         /// </summary>

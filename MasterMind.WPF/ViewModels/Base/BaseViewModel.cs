@@ -1,11 +1,15 @@
-﻿using System.ComponentModel;
+﻿using MasterMind.WPF.Models;
+using System.ComponentModel;
+using System.Windows;
 
 namespace MasterMind.WPF.ViewModels.Base
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
         #region PropertyChanged
+
         public event PropertyChangedEventHandler PropertyChanged = (sender, e) => { };
+
         /// <summary>
         /// Invoked on a property changed in the View Models and Pages. Allows two way data binding.
         /// </summary>
@@ -14,6 +18,20 @@ namespace MasterMind.WPF.ViewModels.Base
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        #endregion
+
+        #endregion PropertyChanged
+
+        #region Protected Methods
+
+        /// <summary>
+        /// Changes the current page of the main window
+        /// </summary>
+        /// <param name="page">Redirect application to this page.</param>
+        protected void ChangePage(ApplicationPage page)
+        {
+            ((WindowViewModel)((MainWindow)Application.Current.MainWindow).DataContext).CurrentPage = page;
+        }
+
+        #endregion Protected Methods
     }
 }
