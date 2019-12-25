@@ -118,7 +118,7 @@ namespace MasterMind.ConsoleApp.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///Wrong color! Please try again..
+        ///Zły kolor! Spróbuj ponownie!.
         /// </summary>
         internal static string WrongColor {
             get {
