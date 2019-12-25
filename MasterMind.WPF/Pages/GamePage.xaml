@@ -3,14 +3,19 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:MasterMind.WPF.Pages"
+      xmlns:local="clr-namespace:MasterMind.WPF"
       mc:Ignorable="d" 
       Height="570" Width="480"
       Title="GamePage">
 
     <Grid>
         <Image  Margin="-15" Source="/Resources/game.png"></Image>
-        <Button Command="{Binding StartCommand}" Opacity="0" Cursor="Hand" HorizontalAlignment="Left" Margin="343,511,0,0" VerticalAlignment="Top" Width="97" Height="39"/>
+        <Button Command="{Binding SendInputCommand}" Opacity="0" Cursor="Hand" HorizontalAlignment="Left" Margin="299,477,0,0" VerticalAlignment="Top" Width="97" Height="39"/>
         <Button Command="{Binding CloseCommand}" Opacity="0" Cursor="Hand" HorizontalAlignment="Left" Margin="447,0,0,0" VerticalAlignment="Top" Width="23" Height="14"/>
+        <TextBox Text="{Binding InputValue}" Background="Transparent" TextAlignment="Center" BorderThickness="0" Margin="45,486,214,70"/>
+        <TextBlock Foreground="#FF971D" Text="{Binding RoundInformation}" Margin="242,80,20,466"></TextBlock>
+        <Rectangle Visibility="{Binding IsInputWrong, Converter={local:BooleanToVisibilityConverter}}" Fill="Red" Margin="43,501,214,68"/>
+        <TextBlock TextAlignment="Center" Visibility="{Binding IsInputWrong, Converter={local:BooleanToVisibilityConverter}}" Foreground="Red" Text="{Binding ErrorInformation}" Margin="0,505,214,45" HorizontalAlignment="Right" Width="221"/>
+
     </Grid>
 </Page>

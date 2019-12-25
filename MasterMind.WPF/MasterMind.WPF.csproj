@@ -63,6 +63,7 @@
     </ApplicationDefinition>
     <Compile Include="Converters\ApplicationPageValueConverter.cs" />
     <Compile Include="Converters\BaseValueConverter.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="Models\ApplicationPage.cs" />
     <Compile Include="Pages\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
@@ -133,6 +134,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MasterMind\MasterMind.Library.csproj">
+      <Project>{22ed07f2-53c9-4e37-af09-dabe22c68ac9}</Project>
+      <Name>MasterMind.Library</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\game.png" />
