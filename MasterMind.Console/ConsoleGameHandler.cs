@@ -1,6 +1,7 @@
 ﻿using MasterMind.ConsoleApp.Resources;
 using MasterMind.Models;
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace MasterMind.ConsoleApp
@@ -184,9 +185,22 @@ namespace MasterMind.ConsoleApp
                 {
                     WriteColor(tip);
                 }
-
-                Console.Write("\n");
+                Console.Write(GetStatus(round.Output) + "\n");
             }
+        }
+
+        /// <summary>
+        /// Checks the output from previous guess and generates a text information for the player.
+        /// </summary>
+        /// <param name="output">Output from the previous round.</param>
+        /// <returns>Information text about previous guess.</returns>
+        private string GetStatus(char[] output)
+        {
+            int correctAnswersCount = output.Count(c => c == Answers.CORRECT_ANSWER);
+            int correctColorsCount = output.Count(c => c == Answers.COLOR_EXISTS);
+            int badAnswerCount = output.Count(c => c == Answers.WRONG_GUESS);
+
+            return DynamicConsoleTexts.GetAnswerOutput(correctAnswersCount, correctColorsCount, badAnswerCount);
         }
 
         /// <summary>
@@ -235,6 +249,8 @@ namespace MasterMind.ConsoleApp
                     return ConsoleColor.White;
 
                 case Answers.WRONG_GUESS:
+                    return ConsoleColor.DarkRed;
+
                 default:
                     return ConsoleColor.Black;
             }

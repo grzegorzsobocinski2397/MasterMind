@@ -14,7 +14,7 @@
         /// <returns>Information text with basic rules of the game.</returns>
         public static string GetInformationText(int codeLength)
         {
-            return $"\nGra rozpoczęta. Komputer wylosował kod o długości {codeLength}. Kody kolorów: red(r),yellow(y), green (g), blue (b), magenta (m), cyan (c) = r,y, g, b, m, c\n";
+            return $"\nGra rozpoczęta. Komputer wylosował kod o długości {codeLength}. Kody kolorów: red (r), yellow (y), green (g), blue (b), magenta (m), cyan (c) = r,y, g, b, m, c\n W naszej aplikacji wyniki przedstawione są jako: szary kolor - dobrze odgadnięta pozycja i kolor, biały - dobrze odganięty kolor oraz ciemnoczerwony - kolor nie występuje w kodzie.";
         }
 
         /// <summary>
@@ -47,6 +47,18 @@
         public static string GetLosingInformation(int round, string code)
         {
             return $"Niestety to koniec gry. Nie udało Ci się odgadnąć hasła pomimo {round} prób. A oto kod: {code}. Prosty nieprawdaż?";
+        }
+
+        /// <summary>
+        /// Create text information about previous guess.
+        /// </summary>
+        /// <param name="correctAnswersCount">Pin at correct position and with correct color.</param>
+        /// <param name="correctColorsCount">Pin at incorrect position but with correct color.</param>
+        /// <param name="badAnswerCount">Pin at incorrect position and with incorrect color.</param>
+        /// <returns>Information text about previous guess.</returns>
+        public static string GetAnswerOutput(int correctAnswersCount, int correctColorsCount, int badAnswerCount)
+        {
+            return $"{correctAnswersCount} poprawnie odganiętych pozycji i kolorów, {correctColorsCount} - poprawnie odgadniętych kolorów, {badAnswerCount} - złych odpowiedzi";
         }
 
         #endregion Public Static Methods
