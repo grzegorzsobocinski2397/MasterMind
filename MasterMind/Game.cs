@@ -127,19 +127,20 @@ namespace MasterMind
                 }
             }
 
+            Round++;
+
             if (answer.All(c => c == Answers.CORRECT_ANSWER))
             {
                 Status = GameStatus.Won;
                 User.GamesWon++;
             }
 
-            if (Round > TimeLimit)
+            if (Round >= TimeLimit)
             {
                 Status = GameStatus.Lost;
                 User.GamesLost++;
             }
 
-            Round++;
 
             string output = RandomizeArray(answer);
 

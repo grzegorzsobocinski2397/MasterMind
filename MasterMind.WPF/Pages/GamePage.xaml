@@ -9,13 +9,49 @@
       Title="GamePage">
 
     <Grid>
-        <Image  Margin="-15" Source="/Resources/game.png"></Image>
+        <Image  Margin="-15" Source="/Resources/game.png" Height="600" VerticalAlignment="Top"></Image>
         <Button Command="{Binding SendInputCommand}" Opacity="0" Cursor="Hand" HorizontalAlignment="Left" Margin="299,477,0,0" VerticalAlignment="Top" Width="97" Height="39"/>
         <Button Command="{Binding CloseCommand}" Opacity="0" Cursor="Hand" HorizontalAlignment="Left" Margin="447,0,0,0" VerticalAlignment="Top" Width="23" Height="14"/>
         <TextBox Text="{Binding InputValue}" Background="Transparent" TextAlignment="Center" BorderThickness="0" Margin="45,486,214,70"/>
-        <TextBlock Foreground="#FF971D" Text="{Binding RoundInformation}" Margin="242,80,20,466"></TextBlock>
+        <TextBlock TextWrapping="Wrap" Foreground="#FF971D" Text="{Binding RoundInformation}" Margin="212,79,50,455"></TextBlock>
         <Rectangle Visibility="{Binding IsInputWrong, Converter={local:BooleanToVisibilityConverter}}" Fill="Red" Margin="43,501,214,68"/>
         <TextBlock TextAlignment="Center" Visibility="{Binding IsInputWrong, Converter={local:BooleanToVisibilityConverter}}" Foreground="Red" Text="{Binding ErrorInformation}" Margin="0,505,214,45" HorizontalAlignment="Right" Width="221"/>
+        <ItemsControl ItemsSource="{Binding Rounds}" Margin="116,120,50,143">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid Width="315">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <ItemsControl Grid.Column="0" ItemsSource="{Binding Input}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate >
+                                    <Rectangle Stroke="LightGray" Margin="10 6"  RadiusX="50" RadiusY="50" Height="20" Width="20" Fill="{Binding Color, Converter={local:MasterMindColorToWpfColorValueConverter}}"></Rectangle>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <ItemsControl Grid.Column="1" ItemsSource="{Binding Output}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Rectangle  Stroke="LightGray" Margin="10 6" RadiusX="50" RadiusY="50" Height="20" Width="20" Fill="{Binding Color, Converter={local:MasterMindColorToWpfColorValueConverter}}"></Rectangle>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
 
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </Page>

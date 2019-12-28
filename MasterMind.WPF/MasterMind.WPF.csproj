@@ -64,7 +64,10 @@
     <Compile Include="Converters\ApplicationPageValueConverter.cs" />
     <Compile Include="Converters\BaseValueConverter.cs" />
     <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\MasterMindColorToWpfColorValueConverter.cs" />
+    <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\ApplicationPage.cs" />
+    <Compile Include="Models\DesktopRound.cs" />
     <Compile Include="Pages\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
