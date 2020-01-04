@@ -1,9 +1,10 @@
 ﻿using MasterMind.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MasterMind.Algorithms.Strategies
 {
-    public class BruteForceStrategy : BaseStrategy
+    public class CheckFourValuesFirstStrategy : BaseStrategy
     {
         #region Constructor
 
@@ -11,9 +12,9 @@ namespace MasterMind.Algorithms.Strategies
         /// Set the amount of tests.
         /// </summary>
         /// <param name="numberOfTests">How many tests have to be run for this strategy</param>
-        public BruteForceStrategy(int numberOfTests, int length) : base(numberOfTests, length)
+        public CheckFourValuesFirstStrategy(int numberOfTests, int length) : base(numberOfTests, length)
         {
-            Name = "Brute Force Strategy";
+            Name = "Check Four Values First Strategy";
         }
 
         #endregion Constructor
@@ -26,14 +27,16 @@ namespace MasterMind.Algorithms.Strategies
         /// <returns>Overall score and information about performed tests.</returns>
         protected override int RunStrategy()
         {
-            List<string> combinations = RandomizeList(Combinations);
-            int counter = 0;
             Game.StartGame();
+            List<string> firstCodes = new List<string> { "rryy", "rgrg", "bbmm", "bcbc" };
+            List<string> combinations = RandomizeList(Combinations).Where(c => !firstCodes.Contains(c)).ToList();
+            int counter = 0;
 
             while (Game.Status != GameStatus.Won)
             {
-                string testCode = combinations[counter];
+                string testCode = counter < firstCodes.Count ? firstCodes[counter] : combinations[0];
                 Game.CheckCode(testCode);
+                combinations = FilterCombinations(combinations, testCode);
 
                 if (Game.Status != GameStatus.Won)
                     counter++;

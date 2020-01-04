@@ -21,9 +21,16 @@ namespace MasterMind.Algorithms
             HumanStrategy humanStrategy = new HumanStrategy(numberOfTests, lengthOfCode);
             RunStrategy(humanStrategy);
 
+            CheckFourValuesFirstStrategy checkFourValuesFirstStrategy = new CheckFourValuesFirstStrategy(numberOfTests, lengthOfCode);
+            RunStrategy(checkFourValuesFirstStrategy);
+
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Runs the strategy and displays the results.
+        /// </summary>
+        /// <param name="strategy">Strategy to be run./param>
         static void RunStrategy(BaseStrategy strategy)
         {
             Result result = strategy.RunTests();
