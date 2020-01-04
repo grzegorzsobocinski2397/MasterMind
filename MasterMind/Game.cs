@@ -141,10 +141,18 @@ namespace MasterMind
                 User.GamesLost++;
             }
 
-
             string output = RandomizeArray(answer);
 
             User.SaveRound(userColors, output.ToCharArray());
+        }
+
+        /// <summary>
+        /// Returns last rounds output.
+        /// </summary>
+        /// <returns>Last rounds output in char array.</returns>
+        public char[] GetLastRoundsOutput()
+        {
+            return User.Rounds[User.Rounds.Count - 1].Output;
         }
 
         #endregion Public Methods

@@ -14,6 +14,10 @@ namespace MasterMind.Algorithms
 
             BruteForceStrategy bruteForceStrategy = new BruteForceStrategy(numberOfTests, lengthOfCode);
             RunStrategy(bruteForceStrategy);
+
+            ColorEliminationStrategy colorEliminationStrategy = new ColorEliminationStrategy(numberOfTests, lengthOfCode);
+            RunStrategy(colorEliminationStrategy);
+            Console.ReadKey();
         }
 
         static void RunStrategy(BaseStrategy strategy)
@@ -23,8 +27,8 @@ namespace MasterMind.Algorithms
             Console.WriteLine($"{strategy.Name}:");
             Console.WriteLine($"Average: {result.GetAverage()}");
             Console.WriteLine($"Maximum number of tries: {result.GetMax()}");
-            Console.WriteLine($"Minimum number of tries: {result.GetMin()}");
-            Console.ReadKey();
+            Console.WriteLine($"Minimum number of tries: {result.GetMin()}\n");
+            
         }
     }
 }

@@ -5,19 +5,13 @@ namespace MasterMind.Algorithms.Strategies
 {
     public abstract class BaseStrategy
     {
-        #region Private Fields
-
-        /// <summary>
-        /// Specifies the length of code.
-        /// </summary>
-        private readonly int codeLength;
-
-        #endregion Private Fields
         #region Public Properties
+
         /// <summary>
         /// Name of the strategy.
         /// </summary>
         public string Name { get; set; }
+
         #endregion
         #region Protected Properties
 
@@ -30,6 +24,11 @@ namespace MasterMind.Algorithms.Strategies
         /// How many tests have to be performed of this strategy.
         /// </summary>
         protected int NumberOfTests { get; }
+
+        /// <summary>
+        /// Specifies the length of code.
+        /// </summary>
+        protected int CodeLength { get; }
 
         /// <summary>
         /// Contains all of the possible combinations for available characters and code length.
@@ -46,7 +45,7 @@ namespace MasterMind.Algorithms.Strategies
         public BaseStrategy(int numberOfTests, int length)
         {
             NumberOfTests = numberOfTests;
-            codeLength = length;
+            CodeLength = length;
             Game = new Game(length, int.MaxValue);
             Combinations = CreateAllCombinations();
         }
@@ -75,7 +74,18 @@ namespace MasterMind.Algorithms.Strategies
         /// Run the tests number of times specified in <see cref="NumberOfTests"/>.
         /// </summary>
         /// <returns>Overall score and information about performed tests.</returns>
-        public abstract Result RunTests();
+        public Result RunTests()
+        {
+            Result result = new Result();
+
+            for (int i = 0; i < NumberOfTests; i++)
+            {
+                int numberOfTries = RunStrategy();
+                result.AddTestResult(numberOfTries);
+            }
+
+            return result;
+        }
 
         /// <summary>
         /// Generates every possible variation of code with length of <see cref="codeLength"/>.
@@ -84,7 +94,7 @@ namespace MasterMind.Algorithms.Strategies
         protected List<string> CreateAllCombinations()
         {
             List<char> availableColors = new List<char>(Game.AvailableColors);
-            return new List<string>(GenerateCombinations(availableColors, codeLength));
+            return new List<string>(GenerateCombinations(availableColors, CodeLength));
         }
 
         #endregion Protected Methods
