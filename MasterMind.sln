@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterMind.ConsoleApp", "Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterMind.WPF", "MasterMind.WPF\MasterMind.WPF.csproj", "{FC4DEBD7-22D8-418E-A799-B38DE5B2DDCE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MasterMind.Algorithms", "MasterMind.Algorithms\MasterMind.Algorithms.csproj", "{D7FB2936-F088-4C53-867C-CD3ABD38B0F4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FC4DEBD7-22D8-418E-A799-B38DE5B2DDCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC4DEBD7-22D8-418E-A799-B38DE5B2DDCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC4DEBD7-22D8-418E-A799-B38DE5B2DDCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7FB2936-F088-4C53-867C-CD3ABD38B0F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7FB2936-F088-4C53-867C-CD3ABD38B0F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7FB2936-F088-4C53-867C-CD3ABD38B0F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7FB2936-F088-4C53-867C-CD3ABD38B0F4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
