@@ -147,12 +147,12 @@ namespace MasterMind
         }
 
         /// <summary>
-        /// Returns last rounds output.
+        /// Returns last rounds output and input.
         /// </summary>
-        /// <returns>Last rounds output in char array.</returns>
-        public char[] GetLastRoundsOutput()
+        /// <returns>Last round output and input.</returns>
+        public Round GetLastRound()
         {
-            return User.Rounds[User.Rounds.Count - 1].Output;
+            return User.Rounds[User.Rounds.Count - 1];
         }
 
         #endregion Public Methods
@@ -170,6 +170,9 @@ namespace MasterMind
             return string.Concat(array.OrderBy(c => random.Next()).Take(CodeLength));
         }
 
+        /// <summary>
+        /// Reset game back to default options.
+        /// </summary>
         private void SetDefaults()
         {
             Status = GameStatus.Ongoing;

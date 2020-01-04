@@ -9,7 +9,7 @@ namespace MasterMind.Algorithms
         {
             Console.WriteLine("How many tests do you want to perform?");
             int numberOfTests = int.Parse(Console.ReadLine());
-            Console.WriteLine("What's the length of the code (usually 4)?");
+            Console.WriteLine("What's the length of the code?");
             int lengthOfCode = int.Parse(Console.ReadLine());
 
             BruteForceStrategy bruteForceStrategy = new BruteForceStrategy(numberOfTests, lengthOfCode);
@@ -17,6 +17,10 @@ namespace MasterMind.Algorithms
 
             ColorEliminationStrategy colorEliminationStrategy = new ColorEliminationStrategy(numberOfTests, lengthOfCode);
             RunStrategy(colorEliminationStrategy);
+
+            HumanStrategy humanStrategy = new HumanStrategy(numberOfTests, lengthOfCode);
+            RunStrategy(humanStrategy);
+
             Console.ReadKey();
         }
 

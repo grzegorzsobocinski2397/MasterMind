@@ -20,12 +20,12 @@ namespace MasterMind.Algorithms.Models
         #region Public Methods
 
         /// <summary>
-        /// Adds another test result into list.
+        /// Adds another test result into list. Add 1 to change it from zero indexed number.
         /// </summary>
         /// <param name="numberOfTries">How many tries did it take to guess correct answer.</param>
         public void AddTestResult(int numberOfTries)
         {
-            testResults.Add(numberOfTries);
+            testResults.Add(numberOfTries + 1);
         }
 
         /// <summary>

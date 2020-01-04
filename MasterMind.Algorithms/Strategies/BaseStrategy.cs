@@ -1,5 +1,8 @@
 ﻿using MasterMind.Algorithms.Models;
+using MasterMind.Models;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MasterMind.Algorithms.Strategies
 {
@@ -12,7 +15,8 @@ namespace MasterMind.Algorithms.Strategies
         /// </summary>
         public string Name { get; set; }
 
-        #endregion
+        #endregion Public Properties
+
         #region Protected Properties
 
         /// <summary>
@@ -88,13 +92,56 @@ namespace MasterMind.Algorithms.Strategies
         }
 
         /// <summary>
-        /// Generates every possible variation of code with length of <see cref="codeLength"/>.
+        /// Randomize array using Fisher-Yates shuffle.
         /// </summary>
-        /// <returns>List of all possibile values.</returns>
-        protected List<string> CreateAllCombinations()
+        /// <param name="list">List to be shuffled.</param>
+        /// <returns>Shuffled list.</returns>
+        protected List<string> RandomizeList(List<string> list)
         {
-            List<char> availableColors = new List<char>(Game.AvailableColors);
-            return new List<string>(GenerateCombinations(availableColors, CodeLength));
+            Random random = new Random();
+            int length = list.Count;
+
+            while (length > 1)
+            {
+                length--;
+                int randomNumber = random.Next(length + 1);
+                string value = list[randomNumber];
+                list[randomNumber] = list[length];
+                list[length] = value;
+            }
+
+            return list;
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="previousInput"></param>
+        /// <returns></returns>
+        protected char[] CheckCode(string input, string previousInput)
+        {
+            char[] userColors = input.ToCharArray();
+            char[] code = previousInput.ToCharArray();
+            char[] answer = new char[CodeLength];
+
+            for (int index = 0; index < CodeLength; index++)
+            {
+                if (userColors[index] == code[index])
+                {
+                    answer[index] = Answers.CORRECT_ANSWER;
+                }
+                else if (code.Contains(userColors[index]))
+                {
+                    answer[index] = Answers.COLOR_EXISTS;
+                }
+                else
+                {
+                    answer[index] = Answers.WRONG_GUESS;
+                }
+            }
+
+            return RandomizeArray(answer);
         }
 
         #endregion Protected Methods
@@ -117,6 +164,27 @@ namespace MasterMind.Algorithms.Strategies
                     foreach (var list in GenerateCombinations(input, length - 1))
                         yield return i.ToString() + list;
             }
+        }
+
+        /// <summary>
+        /// Generates every possible variation of code with length of <see cref="codeLength"/>.
+        /// </summary>
+        /// <returns>List of all possibile values.</returns>
+        private List<string> CreateAllCombinations()
+        {
+            List<char> availableColors = new List<char>(Game.AvailableColors);
+            return new List<string>(GenerateCombinations(availableColors, CodeLength));
+        }
+
+        /// <summary>
+        /// Shuffles the elements inside array and returns.
+        /// </summary>
+        /// <param name="array">Unsorted char[] array containg answers</param>
+        /// <returns>Shuffled array.</returns>
+        private char[] RandomizeArray(char[] array)
+        {
+            Random random = new Random();
+            return array.OrderBy(c => random.Next()).Take(CodeLength).ToArray();
         }
 
         #endregion Private Methods

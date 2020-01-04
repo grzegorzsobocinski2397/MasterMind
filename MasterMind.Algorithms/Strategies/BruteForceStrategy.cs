@@ -26,7 +26,7 @@ namespace MasterMind.Algorithms.Strategies
         /// <returns>Overall score and information about performed tests.</returns>
         protected override int RunStrategy()
         {
-            List<string> combinations = Combinations;
+            List<string> combinations = RandomizeList(Combinations);
             int counter = 0;
             Game.StartGame();
 

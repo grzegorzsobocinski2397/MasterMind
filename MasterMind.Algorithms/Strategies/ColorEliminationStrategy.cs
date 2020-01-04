@@ -46,16 +46,19 @@ namespace MasterMind.Algorithms.Strategies
         #endregion Protected Methods
 
         #region Private Methods
-
+        /// <summary>
+        /// Remove colors that are definetly not used in the code.
+        /// </summary>
+        /// <returns>Filtered list.</returns>
         private List<string> EliminateColors()
         {
-            List<string> combinations = Combinations;
+            List<string> combinations = RandomizeList(Combinations);
 
             foreach (char color in Game.AvailableColors)
             {
                 string code = new string(color, CodeLength);
                 Game.CheckCode(code);
-                bool isTheColorPresent = Game.GetLastRoundsOutput()[0] != Answers.WRONG_GUESS;
+                bool isTheColorPresent = Game.GetLastRound().Output[0] != Answers.WRONG_GUESS;
 
                 if (!isTheColorPresent)
                 {
