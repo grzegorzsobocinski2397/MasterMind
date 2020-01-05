@@ -60,7 +60,7 @@ namespace MasterMind.Algorithms.Strategies
         {
             List<string> combinations = RandomizeList(Combinations);
 
-            foreach (char color in Game.AvailableColors)
+            foreach (char color in Game.AvailableCharacters)
             {
                 string code = new string(color, CodeLength);
                 Game.CheckCode(code);

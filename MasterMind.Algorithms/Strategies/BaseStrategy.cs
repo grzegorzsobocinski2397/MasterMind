@@ -71,7 +71,7 @@ namespace MasterMind.Algorithms.Strategies
         {
             CodeLength = length;
             Game = new Game(length, int.MaxValue);
-            AvailableColors = Game.AvailableColors;
+            AvailableColors = Game.AvailableCharacters;
             Combinations = CreateAllCombinations();
         }
 

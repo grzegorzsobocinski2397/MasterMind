@@ -36,9 +36,9 @@ namespace MasterMind
         public int TimeLimit { get; }
 
         /// <summary>
-        /// Contains all available colors in the game.
+        /// Contains all available characters in the game. Defaults to rgbcmy.
         /// </summary>
-        public char[] AvailableColors { get; } = { Colors.RED, Colors.GREEN, Colors.BLUE, Colors.CYAN, Colors.MAGENTA, Colors.YELLOW };
+        public char[] AvailableCharacters { get; } = { Colors.RED, Colors.GREEN, Colors.BLUE, Colors.CYAN, Colors.MAGENTA, Colors.YELLOW };
 
         /// <summary>
         /// Code that is currently used in the game.
@@ -75,7 +75,7 @@ namespace MasterMind
         {
             CodeLength = codeLength;
             TimeLimit = timeLimit;
-            AvailableColors = availableColors.ToCharArray();
+            AvailableCharacters = availableColors.ToCharArray();
             User = new User();
             StartGame();
         }
@@ -191,7 +191,7 @@ namespace MasterMind
         private void SetDefaults()
         {
             Status = GameStatus.Ongoing;
-            Code = RandomizeArray(AvailableColors);
+            Code = RandomizeArray(AvailableCharacters);
             Round = 0;
             User.ResetAnswers();
         }
