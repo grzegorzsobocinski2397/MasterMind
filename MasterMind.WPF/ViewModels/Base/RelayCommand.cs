@@ -3,6 +3,9 @@ using System.Windows.Input;
 
 namespace MasterMind.WPF.ViewModels.Base
 {
+    /// <summary>
+    /// Base Command that implements <see cref="ICommand"/> for correct functionality.
+    /// </summary>
     internal class RelayCommand : ICommand
     {
         /// <summary>

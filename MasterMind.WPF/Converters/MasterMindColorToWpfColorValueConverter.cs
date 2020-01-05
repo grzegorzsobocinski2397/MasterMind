@@ -1,8 +1,8 @@
-﻿using GameColors = MasterMind.Models.Colors;
-using Answers = MasterMind.Models.Answers;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Windows.Media;
+using Answers = MasterMind.Models.Answers;
+using GameColors = MasterMind.Models.Colors;
 
 namespace MasterMind.WPF
 {
@@ -11,6 +11,9 @@ namespace MasterMind.WPF
     /// </summary>
     internal class MasterMindColorToWpfColorValueConverter : BaseValueConverter<MasterMindColorToWpfColorValueConverter>
     {
+        /// <summary>
+        /// Convert from char to SolidColorBrush.
+        /// </summary>
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             switch (value)
@@ -47,6 +50,9 @@ namespace MasterMind.WPF
             }
         }
 
+        /// <summary>
+        /// Backwards conversion which is not implemented.
+        /// </summary>
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

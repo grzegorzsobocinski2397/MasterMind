@@ -25,7 +25,7 @@ namespace MasterMind.WPF.ViewModels
         /// <summary>
         /// Instance of the Mastermind game.
         /// </summary>
-        private Game game;
+        private readonly Game game;
 
         #endregion Private Fields
 

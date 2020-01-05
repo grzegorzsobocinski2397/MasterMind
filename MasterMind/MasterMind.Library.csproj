@@ -50,7 +50,6 @@
     <Compile Include="Models\Answers.cs" />
     <Compile Include="Models\Colors.cs" />
     <Compile Include="Models\GameStatus.cs" />
-    <Compile Include="Models\Numbers.cs" />
     <Compile Include="Models\Round.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

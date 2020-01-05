@@ -170,6 +170,7 @@ namespace MasterMind.ConsoleApp
             Console.Clear();
             Console.WriteLine(StaticConsoleTexts.ChooseMode);
             char option = Console.ReadKey().KeyChar;
+            gameType = GameType.Colors;
 
             if (option == FirstOptionKey)
             {
@@ -177,7 +178,6 @@ namespace MasterMind.ConsoleApp
             }
             else if (option == SecondOptionKey)
             {
-                gameType = GameType.Colors;
                 StartGame();
             }
             else

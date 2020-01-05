@@ -11,6 +11,11 @@ namespace MasterMind.WPF
     /// </summary>
     public class ApplicationPageValueConverter : BaseValueConverter<ApplicationPageValueConverter>
     {
+        /// <summary>
+        /// Converts from <see cref="ApplicationPage"/> to WPF Page.
+        /// </summary>
+        /// <param name="value">This is the <see cref="ApplicationPage"/> enum.</param>
+        /// <returns>WPF page.</returns>
         public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             switch ((ApplicationPage)value)
@@ -27,6 +32,9 @@ namespace MasterMind.WPF
             };
         }
 
+        /// <summary>
+        /// Backwards convertion which is not implemented.
+        /// </summary>
         public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

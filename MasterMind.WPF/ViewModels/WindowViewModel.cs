@@ -9,27 +9,37 @@ namespace MasterMind.WPF.ViewModels
     /// View Model for the MainWindow contains basic information about the application such as round corners
     /// or currently active page.
     /// </summary>
-    class WindowViewModel : BaseViewModel
+    internal class WindowViewModel : BaseViewModel
     {
         #region Private Members
+
         /// <summary>
         /// The window for this view model
         /// </summary>
         private readonly Window window;
-        #endregion
+
+        #endregion Private Members
+
         #region Public Properties
+
         /// <summary>
         /// Current page being displayed in the application.
         /// </summary>
         public ApplicationPage CurrentPage { get; set; }
-        #endregion
+
+        #endregion Public Properties
+
         #region Commands
+
         /// <summary>
         /// Closes the application
         /// </summary>
         public ICommand CloseWindowCommand { get; set; }
-        #endregion
+
+        #endregion Commands
+
         #region Constructor
+
         public WindowViewModel(Window window)
         {
             // Binds the window to the view model
@@ -41,6 +51,7 @@ namespace MasterMind.WPF.ViewModels
             // Sets the first page as ChooseGamePage
             CurrentPage = ApplicationPage.Start;
         }
-        #endregion
+
+        #endregion Constructor
     }
 }

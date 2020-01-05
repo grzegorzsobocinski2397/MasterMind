@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleGameHandler.cs" />
+    <Compile Include="Helpers\ConsoleColorHelper.cs" />
     <Compile Include="Models\GameType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

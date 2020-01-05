@@ -4,6 +4,9 @@ using System.Windows;
 
 namespace MasterMind.WPF.ViewModels.Base
 {
+    /// <summary>
+    /// Base View Model that implements <see cref="INotifyPropertyChanged"/> for proper Data Binding.
+    /// </summary>
     public class BaseViewModel : INotifyPropertyChanged
     {
         #region PropertyChanged
