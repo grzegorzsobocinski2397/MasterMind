@@ -61,6 +61,38 @@
             return $" {correctAnswersCount} poprawnie odganiętych pozycji i kolorów, {correctColorsCount} - poprawnie odgadniętych kolorów, {badAnswerCount} - złych odpowiedzi";
         }
 
+        /// <summary>
+        /// Create text information asking for a code in mode which computer guesses code.
+        /// </summary>
+        /// <param name="length">Length of the code required.</param>
+        /// <param name="characters">Available characters</param>
+        /// <returns>Information asking for a code in mode which computer guesses code</returns>
+        public static string GetAskForCodeInformation(int length, string characters)
+        {
+            return $"Wymyśl kod o długości {length} i znakach {characters}.";
+        }
+
+        /// <summary>
+        /// Create text information about computer's loss.
+        /// </summary>
+        /// <param name="round">How many rounds have passed.</param>
+        /// <param name="code">What was the code.</param>
+        /// <returns>Text information about computer's loss</returns>
+        public static string GetComputerLostInformation(int round, string code)
+        {
+            return $"Nadszedł koniec gry. Komputerowi nie udało się odgadnąć hasła pomimo {round} prób. A oto kod: {code}.";
+        }
+
+        /// <summary>
+        /// Create text information about computer's win.
+        /// </summary>
+        /// <param name="round">How many rounds have passed.</param>
+        /// <returns>Text information about computer's win.</returns>
+        public static string GetComputerWonInformation(int round)
+        {
+            return $"Komputer wygrał po {round} próbach!";
+        }
+
         #endregion Public Static Methods
     }
 }

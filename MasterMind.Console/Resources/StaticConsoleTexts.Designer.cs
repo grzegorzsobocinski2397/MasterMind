@@ -61,6 +61,44 @@ namespace MasterMind.ConsoleApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Wybierz tryb gry:
+        ///1 - gracz wymyśla kod,
+        ///2 - komputer wymyśla kod.
+        /// </summary>
+        internal static string ChooseMode {
+            get {
+                return ResourceManager.GetString("ChooseMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Komputer odpowiada:.
+        /// </summary>
+        internal static string ComputerAnswer {
+            get {
+                return ResourceManager.GetString("ComputerAnswer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ile kolorów było na dobrej pozycji?.
+        /// </summary>
+        internal static string CorrectAnswers {
+            get {
+                return ResourceManager.GetString("CorrectAnswers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ile kolorów było poprawnych ale na złych pozycjach?.
+        /// </summary>
+        internal static string CorrectColors {
+            get {
+                return ResourceManager.GetString("CorrectColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 
         ///Pierwszy gracz ustala kod (sekretny) składający się z 4 kolorów -kolejność ma znaczenie, kolory mogą się powtarzać. 
         ///1) Podaje swoją kombinację 4 kolorów w odpowiedniej kolejności 
@@ -71,6 +109,18 @@ namespace MasterMind.ConsoleApp.Resources {
         internal static string GameRules {
             get {
                 return ResourceManager.GetString("GameRules", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Czy ta odpowiedź jest prawidłowa? 
+        ///Wciśnij y - jeśli tak,
+        ///Wciśnij n - jeśli nie,
+        ///Twój kod znajduje się poniżej:.
+        /// </summary>
+        internal static string IsCorrect {
+            get {
+                return ResourceManager.GetString("IsCorrect", resourceCulture);
             }
         }
         
@@ -89,7 +139,7 @@ namespace MasterMind.ConsoleApp.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to 
-        ///Chcesz spróbować ponownie? Wciśnij Y aby zatwierdzić.
+        ///Chcesz spróbować ponownie? Wciśnij &apos;y&apos; aby zatwierdzić.
         /// </summary>
         internal static string PlayAgain {
             get {
@@ -113,6 +163,15 @@ namespace MasterMind.ConsoleApp.Resources {
         internal static string WelcomeScreen {
             get {
                 return ResourceManager.GetString("WelcomeScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wymyśliłeś zły kod! Proszę wpisać jeszcze raz..
+        /// </summary>
+        internal static string WrongCode {
+            get {
+                return ResourceManager.GetString("WrongCode", resourceCulture);
             }
         }
         

@@ -1,6 +1,8 @@
-﻿using MasterMind.ConsoleApp.Resources;
+﻿using MasterMind.Algorithms.Strategies;
+using MasterMind.ConsoleApp.Resources;
 using MasterMind.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -14,19 +16,24 @@ namespace MasterMind.ConsoleApp
         #region Constant Fields
 
         /// <summary>
-        /// Char that starts new game in Console App. Saved as a field to increase code readability.
+        /// Char that acts as a first option. Saved as a field to increase code readability.
         /// </summary>
-        private const char StartGameOption = '1';
+        private const char FirstOptionKey = '1';
 
         /// <summary>
-        /// Char that shows the game options in Console App. Saved as a field to increase code readability.
+        /// Char that acts as a second option. Saved as a field to increase code readability.
         /// </summary>
-        private const char DisplayGameRulesOption = '2';
+        private const char SecondOptionKey = '2';
 
         /// <summary>
-        /// Char creates new game in Console App. Saved as a field to increase code readability.
+        /// Char that acts as a confirming option. Saved as a field to increase code readability.
         /// </summary>
-        private const char PlayAgainOption = 'Y';
+        private const char ConfirmingOption = 'y';
+
+        /// <summary>
+        /// Char that acts as a no option. Saved as a field to increase code readability.
+        /// </summary>
+        private const char NoOption = 'n';
 
         /// <summary>
         /// Contains all the available colors in the game Mastermind..
@@ -41,6 +48,33 @@ namespace MasterMind.ConsoleApp
         /// Instance of the game.
         /// </summary>
         private readonly Game game;
+
+        /// <summary>
+        /// Human strategy that will act as AI.
+        /// </summary>
+
+        private HumanStrategy AI;
+
+        /// <summary>
+        /// How many rounds have the AI been playing for.
+        /// </summary>
+        private int computerRound = 0;
+
+        /// <summary>
+        /// How many rounds can user or computer play.
+        /// </summary>
+        private int timeLimit = 9;
+
+        /// <summary>
+        /// Length of the code used.
+        /// </summary>
+
+        private int codeLength = 4;
+
+        /// <summary>
+        /// Contains current's round answers.
+        /// </summary>
+        private List<Round> computerRounds = new List<Round>();
 
         #endregion Private Fields
 
@@ -79,21 +113,152 @@ namespace MasterMind.ConsoleApp
             Console.WriteLine(StaticConsoleTexts.Options);
             char option = Console.ReadKey().KeyChar;
 
-            if (option == StartGameOption)
+            if (option == FirstOptionKey)
             {
-                StartGame();
+                SelectMode();
             }
-            else if (option == DisplayGameRulesOption)
+            else if (option == SecondOptionKey)
             {
                 Console.WriteLine(StaticConsoleTexts.GameRules);
                 TakeFirstOption();
             }
             else
-
             {
                 Console.WriteLine(StaticConsoleTexts.TryAgain);
                 TakeFirstOption();
             }
+        }
+
+        /// <summary>
+        /// User will choose whether he wants to guess or make a code.
+        /// </summary>
+        private void SelectMode()
+        {
+            Console.Clear();
+            Console.WriteLine(StaticConsoleTexts.ChooseMode);
+            char option = Console.ReadKey().KeyChar;
+
+            if (option == FirstOptionKey)
+            {
+                AskForCode();
+            }
+            else if (option == SecondOptionKey)
+            {
+                StartGame();
+            }
+            else
+            {
+                Console.WriteLine(StaticConsoleTexts.TryAgain);
+                TakeFirstOption();
+            }
+        }
+
+        /// <summary>
+        /// Ask the user to come up with a code.
+        /// </summary>
+        private void AskForCode()
+        {
+            Console.Clear();
+            Console.WriteLine(DynamicConsoleTexts.GetAskForCodeInformation(4, AvailableColorsString));
+            AI = new HumanStrategy(4);
+            string code = Console.ReadLine();
+
+            bool doCharactersExist = !Regex.IsMatch(code, $"[^{AvailableColorsString}]");
+            if (doCharactersExist || code.Length == 4)
+            {
+                List<string> combinations = new List<string>();
+                AskAI(combinations, code);
+            }
+            else
+            {
+                Console.WriteLine($"{StaticConsoleTexts.WrongCode}\n");
+                AskForCode();
+            }
+        }
+
+        /// <summary>
+        /// Asks the AI for a guess. 
+        /// </summary>
+        /// <param name="combinations">Combinations left.</param>
+        /// <param name="code">Secret code that user came up with.</param>
+        private void AskAI(List<string> combinations, string code)
+        {
+            computerRound++;
+
+            if (computerRound == timeLimit)
+            {
+                Console.WriteLine(DynamicConsoleTexts.GetComputerLostInformation(computerRound, code));
+                Console.ReadKey();
+                TakeFirstOption();
+            }
+
+            Tuple<List<string>, string> answer = AI.PlayWithAI(combinations, code);
+
+            Console.Beep();
+            Console.Clear();
+            Console.WriteLine(StaticConsoleTexts.ComputerAnswer);
+
+            foreach (char color in answer.Item2.ToCharArray())
+            {
+                WriteColor(color);
+            }
+
+            Console.WriteLine($"\n{StaticConsoleTexts.IsCorrect}");
+
+            foreach (char color in code.ToCharArray())
+            {
+                WriteColor(color);
+            }
+
+            AskUserIfTheAnswerIsCorrect(answer, code);
+        }
+
+        /// <summary>
+        /// Ask the user whether the answer computer came up with was correct.
+        /// </summary>
+        /// <param name="computerAnswer">Contains computer guess and a list of combinations left.</param>
+        /// <param name="code">Secret code that user came up with.</param>
+        private void AskUserIfTheAnswerIsCorrect(Tuple<List<string>, string> computerAnswer, string code)
+        {
+            Console.WriteLine("\n\n");
+            char userInput = Console.ReadKey().KeyChar;
+
+            if (userInput == ConfirmingOption)
+            {
+                Console.WriteLine(DynamicConsoleTexts.GetComputerWonInformation(computerRound));
+                Console.ReadKey();
+                TakeFirstOption();
+            }
+            else if (userInput == NoOption)
+            {
+                char[] score = AskForScore();
+                Round round = new Round(computerAnswer.Item2.ToCharArray(), score);
+                computerRounds.Add(round);
+                GenerateColors(computerRounds);
+                AskAI(computerAnswer.Item1, code);
+            }
+            else
+            {
+                AskUserIfTheAnswerIsCorrect(computerAnswer, code);
+            }
+        }
+
+        /// <summary>
+        /// Ask the user to score computer.
+        /// </summary>
+        /// <returns>Score that is possible to draw in console.</returns>
+        private char[] AskForScore()
+        {
+            Console.WriteLine("\n");
+            Console.WriteLine(StaticConsoleTexts.CorrectAnswers);
+            char[] blacks = new string(Answers.CORRECT_ANSWER, int.Parse(Console.ReadLine())).ToCharArray();
+
+            Console.WriteLine(StaticConsoleTexts.CorrectColors);
+            char[] whites = new string(Answers.COLOR_EXISTS, int.Parse(Console.ReadLine())).ToCharArray();
+
+            char[] empty = new string(Answers.WRONG_GUESS, codeLength - (blacks.Length + whites.Length)).ToCharArray();
+
+            return blacks.Union(whites).Union(empty).ToArray();
         }
 
         /// <summary>
@@ -112,7 +277,7 @@ namespace MasterMind.ConsoleApp
         {
             int currentRound = game.TimeLimit - game.Round;
             Console.WriteLine(DynamicConsoleTexts.GetNextRoundInformation(game.CodeLength, currentRound));
-            GenerateColors();
+            GenerateColors(game.User.Rounds);
             TakeInput();
         }
 
@@ -157,7 +322,7 @@ namespace MasterMind.ConsoleApp
             Console.WriteLine(StaticConsoleTexts.PlayAgain);
             char option = Console.ReadKey().KeyChar;
 
-            if (option == PlayAgainOption)
+            if (option == ConfirmingOption)
             {
                 StartGame();
             }
@@ -170,9 +335,9 @@ namespace MasterMind.ConsoleApp
         /// <summary>
         /// Generate colorful rectangles instead of plain characters.
         /// </summary>
-        private void GenerateColors()
+        private void GenerateColors(List<Round> rounds)
         {
-            foreach (Round round in game.User.Rounds)
+            foreach (Round round in rounds)
             {
                 foreach (char color in round.Input)
                 {

@@ -57,6 +57,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MasterMind.Algorithms\MasterMind.Algorithms.csproj">
+      <Project>{D7FB2936-F088-4C53-867C-CD3ABD38B0F4}</Project>
+      <Name>MasterMind.Algorithms</Name>
+    </ProjectReference>
     <ProjectReference Include="..\MasterMind\MasterMind.Library.csproj">
       <Project>{22ed07f2-53c9-4e37-af09-dabe22c68ac9}</Project>
       <Name>MasterMind.Library</Name>
@@ -68,5 +72,6 @@
       <LastGenOutput>StaticConsoleTexts.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

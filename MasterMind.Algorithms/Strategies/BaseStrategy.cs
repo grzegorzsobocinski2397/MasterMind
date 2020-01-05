@@ -54,7 +54,39 @@ namespace MasterMind.Algorithms.Strategies
             Combinations = CreateAllCombinations();
         }
 
+        /// <summary>
+        /// Initialize the strategy just for playing against human.
+        /// </summary>
+        /// <param name="length">Code length.</param>
+        public BaseStrategy(int length)
+        {
+            CodeLength = length;
+            Game = new Game(length, int.MaxValue);
+            Combinations = CreateAllCombinations();
+        }
+
         #endregion Constructor
+
+        #region Public Methods
+
+        /// <summary>
+        /// Run the tests number of times specified in <see cref="NumberOfTests"/>.
+        /// </summary>
+        /// <returns>Overall score and information about performed tests.</returns>
+        public Result RunTests()
+        {
+            Result result = new Result();
+
+            for (int i = 0; i < NumberOfTests; i++)
+            {
+                int numberOfTries = RunStrategy();
+                result.AddTestResult(numberOfTries);
+            }
+
+            return result;
+        }
+
+        #endregion Public Methods
 
         #region Protected Methods
 
@@ -73,23 +105,6 @@ namespace MasterMind.Algorithms.Strategies
         /// </summary>
         /// <returns>Number of tries it took to guess correct answer.</returns>
         protected abstract int RunStrategy();
-
-        /// <summary>
-        /// Run the tests number of times specified in <see cref="NumberOfTests"/>.
-        /// </summary>
-        /// <returns>Overall score and information about performed tests.</returns>
-        public Result RunTests()
-        {
-            Result result = new Result();
-
-            for (int i = 0; i < NumberOfTests; i++)
-            {
-                int numberOfTries = RunStrategy();
-                result.AddTestResult(numberOfTries);
-            }
-
-            return result;
-        }
 
         /// <summary>
         /// Randomize array using Fisher-Yates shuffle.
@@ -192,11 +207,11 @@ namespace MasterMind.Algorithms.Strategies
         /// <param name="combinations">List of possibile combinations.</param>
         /// <param name="previousGuess">Code that was used in as previous guess.</param>
         /// <returns>Filtered list of combinaions.</returns>
-        protected List<string> FilterCombinations(List<string> combinations, string previousGuess)
+        protected List<string> FilterCombinations(List<string> combinations, string previousGuess, string previousSecret)
         {
             List<string> filteredCombinations = new List<string>();
 
-            int[] previousScore = GetStandardMasterMindScore(previousGuess, Game.Code);
+            int[] previousScore = GetStandardMasterMindScore(previousGuess, previousSecret);
 
             for (int i = 0; i < combinations.Count; i++)
             {
@@ -210,7 +225,6 @@ namespace MasterMind.Algorithms.Strategies
 
             return filteredCombinations;
         }
-
 
         #endregion Protected Methods
 

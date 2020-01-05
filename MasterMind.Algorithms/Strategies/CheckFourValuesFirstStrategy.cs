@@ -36,7 +36,8 @@ namespace MasterMind.Algorithms.Strategies
             {
                 string testCode = counter < firstCodes.Count ? firstCodes[counter] : combinations[0];
                 Game.CheckCode(testCode);
-                combinations = FilterCombinations(combinations, testCode);
+                // Give the previous code to count the score as MasterMind standard score.
+                combinations = FilterCombinations(combinations, testCode, Game.Code);
 
                 if (Game.Status != GameStatus.Won)
                     counter++;
