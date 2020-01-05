@@ -121,15 +121,19 @@
     <value>Wybierz tryb gry:
 1 - gracz wymyśla kod,
 2 - komputer wymyśla kod</value>
+    <comment>Choose the type of the game. Should the player come up with code or the computer.</comment>
   </data>
   <data name="ComputerAnswer" xml:space="preserve">
     <value>Komputer odpowiada:</value>
+    <comment>Used when the computer tries to guess user's answer.</comment>
   </data>
   <data name="CorrectAnswers" xml:space="preserve">
     <value>Ile kolorów było na dobrej pozycji?</value>
+    <comment>Ask the user how many colors where at the correct position in the game mode where the computer tries to guess user's answer.</comment>
   </data>
   <data name="CorrectColors" xml:space="preserve">
     <value>Ile kolorów było poprawnych ale na złych pozycjach?</value>
+    <comment>Ask the user how many colors where at the incorrect position but were used in the code, in the game mode where the computer tries to guess user's answer.</comment>
   </data>
   <data name="GameRules" xml:space="preserve">
     <value>
@@ -140,12 +144,14 @@ b. Kroki powyższe powtarzane są wielokrotnie
 c. Drugi gracz próbuje odgadnąć sekretny kod:
 2) Gra kończy się, gdy drugi gracz odgadnie sekretny kod
 3) Dobry gracz po 4-5 próbach potrafi odgadnąć sekretny kod (w zależności od stosowanej strategii - strategia bazuje na dobrym początku i odpowiednim wnioskowaniu w dalszych krokach)</value>
+    <comment>Contains all the game rules (basic ones).</comment>
   </data>
   <data name="IsCorrect" xml:space="preserve">
     <value>Czy ta odpowiedź jest prawidłowa? 
 Wciśnij y - jeśli tak,
 Wciśnij n - jeśli nie,
 Twój kod znajduje się poniżej:</value>
+    <comment>Ask the user if the code that computer guessed was correct.</comment>
   </data>
   <data name="Options" xml:space="preserve">
     <value>
@@ -154,19 +160,23 @@ Wybierz opcję:
 2 - wyświetlenie zasad gry.
 3 - specjalna wersja gry z cyframi zamiast kolorami
 </value>
+    <comment>First text that user can interact with.</comment>
   </data>
   <data name="ParameterizeGame" xml:space="preserve">
     <value>Czy chcesz sparametryzować grę? 
 Wciśnij y - jeśli tak,
 wciśnij n - jeśli nie.</value>
+    <comment>Ask the user if he/she wants to parameterize game.</comment>
   </data>
   <data name="PlayAgain" xml:space="preserve">
     <value>
 Chcesz spróbować ponownie? Wciśnij 'y' aby zatwierdzić</value>
+    <comment>Ask the user if he/she wants to play again.</comment>
   </data>
   <data name="PossibleCodeLength" xml:space="preserve">
     <value>
 Długość kodu może wynosić od 4 do 6. Wpisz długość swojego kodu!</value>
+    <comment>Ask the user how long should be the code.</comment>
   </data>
   <data name="PossibleColors" xml:space="preserve">
     <value>
@@ -177,19 +187,24 @@ Takie są możliwe kombinacje kolorów:
 Wybierz swoją kombinację.
 
 </value>
+    <comment>Ask the user which palette of colors should be used.</comment>
   </data>
   <data name="TryAgain" xml:space="preserve">
     <value>
 Proszę spróbować jeszcze raz.</value>
+    <comment>Ask user to input again.</comment>
   </data>
   <data name="WelcomeScreen" xml:space="preserve">
     <value>Witaj w grze Mastermind!</value>
+    <comment>First text that user sees.</comment>
   </data>
   <data name="WrongCode" xml:space="preserve">
     <value>Wymyśliłeś zły kod! Proszę wpisać jeszcze raz.</value>
+    <comment>User wrote incorrect code.</comment>
   </data>
   <data name="WrongColor" xml:space="preserve">
     <value>
 Zły kolor! Spróbuj ponownie!</value>
+    <comment>User used incorrect color.</comment>
   </data>
 </root>

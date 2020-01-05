@@ -3,16 +3,16 @@
     /// <summary>
     /// Generates dynamic console texts. Used to make <see cref="ConsoleGameHandler"/> more readable.
     /// </summary>
-    public static class DynamicConsoleTexts
+    internal static class DynamicConsoleTexts
     {
-        #region Public Static Methods
+        #region Internal Static Methods
 
         /// <summary>
         /// Create text information about basic rules of the game.
         /// </summary>
         /// <param name="codeLength">Length of the code generated.</param>
         /// <returns>Information text with basic rules of the game.</returns>
-        public static string GetInformationText(int codeLength)
+        internal static string GetInformationText(int codeLength)
         {
             return $"\nGra rozpoczęta. Komputer wylosował kod o długości {codeLength}. Kody kolorów: red (r), yellow (y), green (g), blue (b), magenta (m), cyan (c) oraz kolory dostępne tylko po wybraniu parametrów: dark yellow (q), dark red (i) = r,y, g, b, m, c, q, i\n W naszej aplikacji wyniki przedstawione są jako: szary kolor - dobrze odgadnięta pozycja i kolor, biały - dobrze odganięty kolor oraz ciemnoczerwony - kolor nie występuje w kodzie.";
         }
@@ -23,7 +23,7 @@
         /// <param name="codeLength">Length of the code generated.</param>
         /// <param name="round">Number of rounds left.</param>
         /// <returns>Information text about next round.</returns>
-        public static string GetNextRoundInformation(int codeLength, int round)
+        internal static string GetNextRoundInformation(int codeLength, int round)
         {
             return $"\nWpisz proszę swoją odpowiedź o maksymalnej długości {codeLength}. Pozostało Ci {round} prób.\n";
         }
@@ -33,7 +33,7 @@
         /// </summary>
         /// <param name="round">Current round in which player won.</param>
         /// <returns>Information text about player's win.</returns>
-        public static string GetWinningInformation(int round)
+        internal static string GetWinningInformation(int round)
         {
             return $"Gratulacje! Odgadłeś kod :) Zajęlo Ci to {round} prób.";
         }
@@ -44,7 +44,7 @@
         /// <param name="round">Current round in which player lost.</param>
         /// <param name="code">Correct code, which user didn't guess right.</param>
         /// <returns>Information text about user's loss.</returns>
-        public static string GetLosingInformation(int round, string code)
+        internal static string GetLosingInformation(int round, string code)
         {
             return $"Niestety to koniec gry. Nie udało Ci się odgadnąć hasła pomimo {round} prób. A oto kod: {code}. Prosty nieprawdaż?";
         }
@@ -56,7 +56,7 @@
         /// <param name="correctColorsCount">Pin at incorrect position but with correct color.</param>
         /// <param name="badAnswerCount">Pin at incorrect position and with incorrect color.</param>
         /// <returns>Information text about previous guess.</returns>
-        public static string GetAnswerOutput(int correctAnswersCount, int correctColorsCount, int badAnswerCount)
+        internal static string GetAnswerOutput(int correctAnswersCount, int correctColorsCount, int badAnswerCount)
         {
             return $" {correctAnswersCount} poprawnie odganiętych pozycji i kolorów, {correctColorsCount} - poprawnie odgadniętych kolorów, {badAnswerCount} - złych odpowiedzi";
         }
@@ -67,7 +67,7 @@
         /// <param name="length">Length of the code required.</param>
         /// <param name="characters">Available characters</param>
         /// <returns>Information asking for a code in mode which computer guesses code</returns>
-        public static string GetAskForCodeInformation(int length, string characters)
+        internal static string GetAskForCodeInformation(int length, string characters)
         {
             return $"Wymyśl kod o długości {length} i znakach {characters}.";
         }
@@ -78,7 +78,7 @@
         /// <param name="round">How many rounds have passed.</param>
         /// <param name="code">What was the code.</param>
         /// <returns>Text information about computer's loss</returns>
-        public static string GetComputerLostInformation(int round, string code)
+        internal static string GetComputerLostInformation(int round, string code)
         {
             return $"Nadszedł koniec gry. Komputerowi nie udało się odgadnąć hasła pomimo {round} prób. A oto kod: {code}.";
         }
@@ -88,11 +88,11 @@
         /// </summary>
         /// <param name="round">How many rounds have passed.</param>
         /// <returns>Text information about computer's win.</returns>
-        public static string GetComputerWonInformation(int round)
+        internal static string GetComputerWonInformation(int round)
         {
             return $"Komputer wygrał po {round} próbach!";
         }
 
-        #endregion Public Static Methods
+        #endregion Internal Static Methods
     }
 }

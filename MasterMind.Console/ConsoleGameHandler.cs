@@ -1,4 +1,5 @@
 ﻿using MasterMind.Algorithms.Strategies;
+using MasterMind.ConsoleApp.Helpers;
 using MasterMind.ConsoleApp.Models;
 using MasterMind.ConsoleApp.Resources;
 using MasterMind.Models;
@@ -84,20 +85,18 @@ namespace MasterMind.ConsoleApp
 
         #endregion Private Fields
 
-        #region Public Methods
+        #region Internal Methods
 
         /// <summary>
         /// Display the start window and ask for input.
         /// </summary>
-        public void SetStartScreen()
+        internal void SetStartScreen()
         {
             Console.WriteLine(StaticConsoleTexts.WelcomeScreen);
             DisplayStartingWindow();
         }
 
-        #endregion Public Methods
-
-        #region Private Methods
+        #endregion Internal Methods
 
         /// <summary>
         /// Start new game or display game rules depending on the user's input.
@@ -262,14 +261,14 @@ namespace MasterMind.ConsoleApp
 
             foreach (char color in answer.Item2.ToCharArray())
             {
-                WriteColor(color);
+                ConsoleColorHelper.WriteColor(color);
             }
 
             Console.WriteLine($"\n{StaticConsoleTexts.IsCorrect}");
 
             foreach (char color in code.ToCharArray())
             {
-                WriteColor(color);
+                ConsoleColorHelper.WriteColor(color);
             }
 
             AskUserIfTheAnswerIsCorrect(answer, code);
@@ -319,7 +318,7 @@ namespace MasterMind.ConsoleApp
             int currentRound = game.TimeLimit - game.Round;
             Console.Clear();
             Console.WriteLine(DynamicConsoleTexts.GetNextRoundInformation(game.CodeLength, currentRound));
-            GenerateColors(game.User.Rounds);
+            GenerateGameBoard(game.User.Rounds);
             TakeInput();
         }
 
@@ -377,7 +376,8 @@ namespace MasterMind.ConsoleApp
         /// <summary>
         /// Generate colorful rectangles instead of plain characters.
         /// </summary>
-        private void GenerateColors(List<Round> rounds)
+        /// <param name="rounds">List of all rounds that have been played.</param>
+        private void GenerateGameBoard(List<Round> rounds)
         {
             foreach (Round round in rounds)
             {
@@ -385,7 +385,7 @@ namespace MasterMind.ConsoleApp
                 {
                     foreach (char color in round.Input)
                     {
-                        WriteColor(color);
+                        ConsoleColorHelper.WriteColor(color);
                     }
                 }
                 else
@@ -400,7 +400,7 @@ namespace MasterMind.ConsoleApp
 
                 foreach (char tip in round.Output)
                 {
-                    WriteColor(tip);
+                    ConsoleColorHelper.WriteColor(tip);
                 }
                 Console.Write(GetStatus(round.Output) + "\n");
             }
@@ -419,66 +419,5 @@ namespace MasterMind.ConsoleApp
 
             return DynamicConsoleTexts.GetAnswerOutput(correctAnswersCount, correctColorsCount, badAnswerCount);
         }
-
-        /// <summary>
-        /// Create colorful rectangle for the character.
-        /// </summary>
-        /// <param name="character">Character available in the application.</param>
-        private void WriteColor(char character)
-        {
-            Console.BackgroundColor = GetConsoleColor(character);
-            Console.ForegroundColor = GetConsoleColor(character);
-            Console.Write($"  ");
-            Console.ResetColor();
-        }
-
-        /// <summary>
-        /// Get colorful rectangle for the character.
-        /// </summary>
-        /// <param name="character">Character available in the application.</param>
-        /// <returns>Color of the console.</returns>
-        private ConsoleColor GetConsoleColor(char character)
-        {
-            switch (character)
-            {
-                case Colors.BLUE:
-                    return ConsoleColor.Blue;
-
-                case Colors.CYAN:
-                    return ConsoleColor.Cyan;
-
-                case Colors.GREEN:
-                    return ConsoleColor.Green;
-
-                case Colors.MAGENTA:
-                    return ConsoleColor.Magenta;
-
-                case Colors.RED:
-                    return ConsoleColor.Red;
-
-                case Colors.YELLOW:
-                    return ConsoleColor.Yellow;
-
-                case Colors.DARK_YELLOW:
-                    return ConsoleColor.DarkYellow;
-
-                case Colors.DARK_RED:
-                    return ConsoleColor.DarkRed;
-
-                case Answers.CORRECT_ANSWER:
-                    return ConsoleColor.DarkGray;
-
-                case Answers.COLOR_EXISTS:
-                    return ConsoleColor.White;
-
-                case Answers.WRONG_GUESS:
-                    return ConsoleColor.DarkRed;
-
-                default:
-                    return ConsoleColor.Black;
-            }
-        }
-
-        #endregion Private Methods
     }
 }
