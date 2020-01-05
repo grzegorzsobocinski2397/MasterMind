@@ -1,11 +1,13 @@
 ﻿using MasterMind.Algorithms.Models;
-using MasterMind.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace MasterMind.Algorithms.Strategies
 {
+    /// <summary>
+    /// Base strategy that contains shared methods and base setup.
+    /// </summary>
     public abstract class BaseStrategy
     {
         #region Public Properties
@@ -30,7 +32,7 @@ namespace MasterMind.Algorithms.Strategies
         protected Game Game { get; }
 
         /// <summary>
-        /// How many tests have to be performed of this strategy.
+        /// Number of tests that have to be performed of this strategy.
         /// </summary>
         protected int NumberOfTests { get; }
 
@@ -51,6 +53,8 @@ namespace MasterMind.Algorithms.Strategies
         /// <summary>
         /// Initialize the <see cref="Game"/> instance with code length specified and time limit of max int value.
         /// </summary>
+        /// <param name="numberOfTests">Number of tests that have to be performed of this strategy.</param>
+        /// <param name="length">Code length.</param>
         public BaseStrategy(int numberOfTests, int length)
         {
             NumberOfTests = numberOfTests;
@@ -60,7 +64,7 @@ namespace MasterMind.Algorithms.Strategies
         }
 
         /// <summary>
-        /// Initialize the strategy just for playing against human.
+        /// Initialize the strategy just for playing against human player.
         /// </summary>
         /// <param name="length">Code length.</param>
         public BaseStrategy(int length)
@@ -70,7 +74,6 @@ namespace MasterMind.Algorithms.Strategies
             AvailableColors = Game.AvailableColors;
             Combinations = CreateAllCombinations();
         }
-
 
         /// <summary>
         /// Initialize the strategy just for playing against human with parameterized options.
@@ -87,13 +90,13 @@ namespace MasterMind.Algorithms.Strategies
 
         #endregion Constructor
 
-        #region Public Methods
+        #region Internal Methods
 
         /// <summary>
         /// Run the tests number of times specified in <see cref="NumberOfTests"/>.
         /// </summary>
         /// <returns>Overall score and information about performed tests.</returns>
-        public Result RunTests()
+        internal Result RunTests()
         {
             Result result = new Result();
 
@@ -106,7 +109,7 @@ namespace MasterMind.Algorithms.Strategies
             return result;
         }
 
-        #endregion Public Methods
+        #endregion Internal Methods
 
         #region Protected Methods
 
@@ -146,37 +149,6 @@ namespace MasterMind.Algorithms.Strategies
             }
 
             return list;
-        }
-
-        /// <summary>
-        ///
-        /// </summary>
-        /// <param name="input"></param>
-        /// <param name="previousInput"></param>
-        /// <returns></returns>
-        protected char[] CheckCode(string input, string previousInput)
-        {
-            char[] userColors = input.ToCharArray();
-            char[] code = previousInput.ToCharArray();
-            char[] answer = new char[CodeLength];
-
-            for (int index = 0; index < CodeLength; index++)
-            {
-                if (userColors[index] == code[index])
-                {
-                    answer[index] = Answers.CORRECT_ANSWER;
-                }
-                else if (code.Contains(userColors[index]))
-                {
-                    answer[index] = Answers.COLOR_EXISTS;
-                }
-                else
-                {
-                    answer[index] = Answers.WRONG_GUESS;
-                }
-            }
-
-            return RandomizeArray(answer);
         }
 
         /// <summary>
@@ -276,17 +248,6 @@ namespace MasterMind.Algorithms.Strategies
         {
             List<char> availableColors = new List<char>(AvailableColors);
             return new List<string>(GenerateCombinations(availableColors, CodeLength));
-        }
-
-        /// <summary>
-        /// Shuffles the elements inside array and returns.
-        /// </summary>
-        /// <param name="array">Unsorted char[] array containg answers</param>
-        /// <returns>Shuffled array.</returns>
-        private char[] RandomizeArray(char[] array)
-        {
-            Random random = new Random();
-            return array.OrderBy(c => random.Next()).Take(CodeLength).ToArray();
         }
 
         #endregion Private Methods

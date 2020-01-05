@@ -1,32 +1,38 @@
-﻿using MasterMind.Models;
+﻿using MasterMind.Algorithms.Resources;
+using MasterMind.Models;
 using System;
 using System.Collections.Generic;
 
 namespace MasterMind.Algorithms.Strategies
 {
+    /// <summary>
+    /// This is the 3rd strategy. Should be slower than the 4th one but I didn't know how to implement human-like actions.
+    /// This is just an algorythm that finishes the game very fast.
+    /// </summary>
     public class HumanStrategy : BaseStrategy
     {
         #region Constructor
 
         /// <summary>
-        /// Set the amount of tests.
+        /// Initialize this strategy. Set the amount of tests and code length.
         /// </summary>
         /// <param name="numberOfTests">How many tests have to be run for this strategy</param>
+        /// <param name="length">Length of the code.</param>
         public HumanStrategy(int numberOfTests, int length) : base(numberOfTests, length)
         {
-            Name = "Human Strategy (little too fast)";
+            Name = StrategyNames.Human;
         }
 
         /// <summary>
         /// Initialize the strategy to play against humans.
         /// </summary>
-        /// <param name="length">Code length.</param>
+        /// <param name="length">Length of the code.</param>
         public HumanStrategy(int length) : base(length) { }
 
         /// <summary>
         /// Initialize the strategy to play against humans with parameters.
         /// </summary>
-        /// <param name="length">Code length.</param>
+        /// <param name="length">Length of the code.</param>
         /// <param name=availableColors">Available colors in a code.</param>
         public HumanStrategy(int length, string availableColors) : base(length, availableColors) { }
 

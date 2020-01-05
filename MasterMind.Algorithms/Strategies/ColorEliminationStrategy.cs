@@ -1,20 +1,25 @@
-﻿using MasterMind.Models;
+﻿using MasterMind.Algorithms.Resources;
+using MasterMind.Models;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace MasterMind.Algorithms.Strategies
 {
+    /// <summary>
+    /// This is the 2nd strategy. First eliminate colors that don't exist in the code and then try guessing by brute force.
+    /// </summary>
     public class ColorEliminationStrategy : BaseStrategy
     {
         #region Constructor
 
         /// <summary>
-        /// Set the amount of tests.
+        /// Initialize this strategy. Set the amount of tests and code length.
         /// </summary>
         /// <param name="numberOfTests">How many tests have to be run for this strategy</param>
+        /// <param name="length">Length of the code.</param>
         public ColorEliminationStrategy(int numberOfTests, int length) : base(numberOfTests, length)
         {
-            Name = "Color Elimination Strategy";
+            Name = StrategyNames.ColorElimination;
         }
 
         #endregion Constructor
@@ -46,6 +51,7 @@ namespace MasterMind.Algorithms.Strategies
         #endregion Protected Methods
 
         #region Private Methods
+
         /// <summary>
         /// Remove colors that are definetly not used in the code.
         /// </summary>

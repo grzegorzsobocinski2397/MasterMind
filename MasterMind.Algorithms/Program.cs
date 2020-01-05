@@ -1,14 +1,19 @@
 ﻿using MasterMind.Algorithms.Models;
 using MasterMind.Algorithms.Strategies;
 using System;
+
 namespace MasterMind.Algorithms
 {
-    class Program
+    internal class Program
     {
+        /// <summary>
+        /// Ask the user for parameters and then run all the tests.
+        /// </summary>
         static void Main()
         {
             Console.WriteLine("How many tests do you want to perform?");
             int numberOfTests = int.Parse(Console.ReadLine());
+
             Console.WriteLine("What's the length of the code?");
             int lengthOfCode = int.Parse(Console.ReadLine());
 

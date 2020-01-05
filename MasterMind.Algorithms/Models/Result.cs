@@ -6,24 +6,24 @@ namespace MasterMind.Algorithms.Models
     /// <summary>
     /// Contains information about performance of performed tests.
     /// </summary>
-    public class Result
+    internal class Result
     {
-        #region Public Properties
+        #region Private Fields
 
         /// <summary>
         /// List of all performed tests and how many tries did it take to guess correct answer.
         /// </summary>
         private readonly List<int> testResults = new List<int>();
 
-        #endregion Public Properties
+        #endregion Private Fields
 
-        #region Public Methods
+        #region Internal Methods
 
         /// <summary>
         /// Adds another test result into list. Add 1 to change it from zero indexed number.
         /// </summary>
         /// <param name="numberOfTries">How many tries did it take to guess correct answer.</param>
-        public void AddTestResult(int numberOfTries)
+        internal void AddTestResult(int numberOfTries)
         {
             testResults.Add(numberOfTries + 1);
         }
@@ -32,20 +32,20 @@ namespace MasterMind.Algorithms.Models
         /// Searches for the test with the highest number of tries.
         /// </summary>
         /// <returns>Number of tries in test with the highest number of tries.</returns>
-        public int GetMax() => testResults.Max();
+        internal int GetMax() => testResults.Max();
 
         /// <summary>
         /// Searches for the test with the lowest number of tries.
         /// </summary>
         /// <returns>Number of tries in test with the lowest number of tries.</returns>
-        public int GetMin() => testResults.Min();
+        internal int GetMin() => testResults.Min();
 
         /// <summary>
         /// Calculates an average of performed tests.
         /// </summary>
         /// <returns>Average number of tries for specific strategy.</returns>
-        public double GetAverage() => testResults.Average();
+        internal double GetAverage() => testResults.Average();
 
-        #endregion Public Methods
+        #endregion Internal Methods
     }
 }
