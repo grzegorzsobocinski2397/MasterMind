@@ -1,4 +1,6 @@
-﻿namespace MasterMind.ConsoleApp.Resources
+﻿using MasterMind.ConsoleApp.Models;
+
+namespace MasterMind.ConsoleApp.Resources
 {
     /// <summary>
     /// Generates dynamic console texts. Used to make <see cref="ConsoleGameHandler"/> more readable.
@@ -14,7 +16,7 @@
         /// <returns>Information text with basic rules of the game.</returns>
         internal static string GetInformationText(int codeLength)
         {
-            return $"\nGra rozpoczęta. Komputer wylosował kod o długości {codeLength}. Kody kolorów: red (r), yellow (y), green (g), blue (b), magenta (m), cyan (c) oraz kolory dostępne tylko po wybraniu parametrów: dark yellow (q), dark red (i) = r,y, g, b, m, c, q, i\n W naszej aplikacji wyniki przedstawione są jako: szary kolor - dobrze odgadnięta pozycja i kolor, biały - dobrze odganięty kolor oraz ciemnoczerwony - kolor nie występuje w kodzie.";
+            return $"Komputer wylosował kod o długości {codeLength}. Kody kolorów: red (r), yellow (y), green (g), blue (b), magenta (m), cyan (c) oraz kolory dostępne tylko po wybraniu parametrów: dark yellow (q), dark red (i) = r,y, g, b, m, c, q, i\nW naszej aplikacji wyniki przedstawione są jako: szary kolor - dobrze odgadnięta pozycja i kolor, biały - dobrze odganięty kolor.";
         }
 
         /// <summary>
@@ -56,9 +58,16 @@
         /// <param name="correctColorsCount">Pin at incorrect position but with correct color.</param>
         /// <param name="badAnswerCount">Pin at incorrect position and with incorrect color.</param>
         /// <returns>Information text about previous guess.</returns>
-        internal static string GetAnswerOutput(int correctAnswersCount, int correctColorsCount, int badAnswerCount)
+        internal static string GetAnswerOutput(int correctAnswersCount, int correctColorsCount, GameType gameType)
         {
-            return $" {correctAnswersCount} poprawnie odganiętych pozycji i kolorów, {correctColorsCount} - poprawnie odgadniętych kolorów, {badAnswerCount} - złych odpowiedzi";
+            if (gameType == GameType.Colors)
+            {
+                return $" {correctAnswersCount} poprawnie odgadniętych pozycji i kolorów, {correctColorsCount} - poprawnie odgadniętych kolorów.";
+            }
+            else
+            {
+                return $" {correctAnswersCount} poprawnie odgadniętych pozycji i cyfr, {correctColorsCount} - poprawnie odgadniętych cyfr.";
+            }
         }
 
         /// <summary>

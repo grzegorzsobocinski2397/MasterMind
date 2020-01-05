@@ -292,6 +292,8 @@ namespace MasterMind.ConsoleApp
             }
             else if (userInput == NoOption)
             {
+
+                AskForScore();
                 AskAI(computerAnswer.Item1, code);
             }
             else
@@ -301,12 +303,29 @@ namespace MasterMind.ConsoleApp
         }
 
         /// <summary>
+        /// Ask the user to score computer.
+        /// </summary>
+        /// <returns>Score that is possible to draw in console.</returns>
+        private char[] AskForScore()
+        {
+            Console.WriteLine("\n");
+            Console.WriteLine(StaticConsoleTexts.CorrectAnswers);
+            char[] blacks = new string(Answers.CORRECT_ANSWER, int.Parse(Console.ReadLine())).ToCharArray();
+
+            Console.WriteLine(StaticConsoleTexts.CorrectColors);
+            char[] whites = new string(Answers.COLOR_EXISTS, int.Parse(Console.ReadLine())).ToCharArray();
+
+            char[] empty = new string(Answers.WRONG_GUESS, codeLength - (blacks.Length + whites.Length)).ToCharArray();
+
+            return blacks.Union(whites).Union(empty).ToArray();
+        }
+
+        /// <summary>
         /// Start new game. Display basic information.
         /// </summary>
         private void StartGame()
         {
             game = new Game(codeLength, timeLimit, availableCharacters);
-            Console.WriteLine(DynamicConsoleTexts.GetInformationText(game.CodeLength));
             AskForInput();
         }
 
@@ -317,6 +336,7 @@ namespace MasterMind.ConsoleApp
         {
             int currentRound = game.TimeLimit - game.Round;
             Console.Clear();
+            Console.WriteLine(DynamicConsoleTexts.GetInformationText(game.CodeLength));
             Console.WriteLine(DynamicConsoleTexts.GetNextRoundInformation(game.CodeLength, currentRound));
             GenerateGameBoard(game.User.Rounds);
             TakeInput();
@@ -330,9 +350,9 @@ namespace MasterMind.ConsoleApp
             string input = Console.ReadLine();
             bool doCharactersExist = !Regex.IsMatch(input, $"[^{availableCharacters}]");
 
-            if (!doCharactersExist)
+            if (!doCharactersExist || input.Length != game.CodeLength)
             {
-                Console.WriteLine(StaticConsoleTexts.WrongColor);
+                Console.WriteLine(StaticConsoleTexts.WrongCode);
                 AskForInput();
                 return;
             }
@@ -397,11 +417,25 @@ namespace MasterMind.ConsoleApp
                 }
 
                 Console.Write(" ");
+                int emptyCounter = 0;
 
                 foreach (char tip in round.Output)
                 {
-                    ConsoleColorHelper.WriteColor(tip);
+                    if (tip != Answers.WRONG_GUESS)
+                    {
+                        ConsoleColorHelper.WriteColor(tip);
+                    }
+                    else
+                    {
+                        emptyCounter++;
+                    }
                 }
+                
+                for (int i = 0; i < emptyCounter; i++)
+                {
+                    ConsoleColorHelper.WriteColor(Answers.WRONG_GUESS);
+                }
+
                 Console.Write(GetStatus(round.Output) + "\n");
             }
         }
@@ -415,9 +449,8 @@ namespace MasterMind.ConsoleApp
         {
             int correctAnswersCount = output.Count(c => c == Answers.CORRECT_ANSWER);
             int correctColorsCount = output.Count(c => c == Answers.COLOR_EXISTS);
-            int badAnswerCount = output.Count(c => c == Answers.WRONG_GUESS);
 
-            return DynamicConsoleTexts.GetAnswerOutput(correctAnswersCount, correctColorsCount, badAnswerCount);
+            return DynamicConsoleTexts.GetAnswerOutput(correctAnswersCount, correctColorsCount, gameType);
         }
     }
 }

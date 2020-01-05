@@ -66,8 +66,6 @@ namespace MasterMind.ConsoleApp.Helpers
                     return ConsoleColor.White;
 
                 case Answers.WRONG_GUESS:
-                    return ConsoleColor.DarkRed;
-
                 default:
                     return ConsoleColor.Black;
             }

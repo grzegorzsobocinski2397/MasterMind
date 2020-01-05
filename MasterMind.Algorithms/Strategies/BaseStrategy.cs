@@ -60,6 +60,7 @@ namespace MasterMind.Algorithms.Strategies
             NumberOfTests = numberOfTests;
             CodeLength = length;
             Game = new Game(length, int.MaxValue);
+            AvailableColors = Game.AvailableCharacters;
             Combinations = CreateAllCombinations();
         }
 
