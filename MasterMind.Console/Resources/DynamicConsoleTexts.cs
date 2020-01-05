@@ -14,7 +14,7 @@
         /// <returns>Information text with basic rules of the game.</returns>
         public static string GetInformationText(int codeLength)
         {
-            return $"\nGra rozpoczęta. Komputer wylosował kod o długości {codeLength}. Kody kolorów: red (r), yellow (y), green (g), blue (b), magenta (m), cyan (c) = r,y, g, b, m, c\n W naszej aplikacji wyniki przedstawione są jako: szary kolor - dobrze odgadnięta pozycja i kolor, biały - dobrze odganięty kolor oraz ciemnoczerwony - kolor nie występuje w kodzie.";
+            return $"\nGra rozpoczęta. Komputer wylosował kod o długości {codeLength}. Kody kolorów: red (r), yellow (y), green (g), blue (b), magenta (m), cyan (c) oraz kolory dostępne tylko po wybraniu parametrów: dark yellow (q), dark red (i) = r,y, g, b, m, c, q, i\n W naszej aplikacji wyniki przedstawione są jako: szary kolor - dobrze odgadnięta pozycja i kolor, biały - dobrze odganięty kolor oraz ciemnoczerwony - kolor nie występuje w kodzie.";
         }
 
         /// <summary>

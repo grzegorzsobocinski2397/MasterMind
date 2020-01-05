@@ -1,4 +1,5 @@
 ﻿using MasterMind.Algorithms.Strategies;
+using MasterMind.ConsoleApp.Models;
 using MasterMind.ConsoleApp.Resources;
 using MasterMind.Models;
 using System;
@@ -26,6 +27,11 @@ namespace MasterMind.ConsoleApp
         private const char SecondOptionKey = '2';
 
         /// <summary>
+        /// Char that acts as a third option. Saved as a field to increase code readability.
+        /// </summary>
+        private const char ThirdOptionKey = '3';
+
+        /// <summary>
         /// Char that acts as a yes option. Saved as a field to increase code readability.
         /// </summary>
         private const char YesOption = 'y';
@@ -40,9 +46,14 @@ namespace MasterMind.ConsoleApp
         #region Private Fields
 
         /// <summary>
-        /// Contains all the available colors in the game Mastermind..
+        /// Currently played game type.
         /// </summary>
-        private string availableColorsString = "rygbmc";
+        private GameType gameType;
+
+        /// <summary>
+        /// Contains all the available colors or numerals in the game Mastermind. Defaults is 'rygbmc'.
+        /// </summary>
+        private string availableCharacters = "rygbmc";
 
         /// <summary>
         /// Instance of the game.
@@ -56,17 +67,17 @@ namespace MasterMind.ConsoleApp
         private HumanStrategy AI;
 
         /// <summary>
-        /// How many rounds have the AI been playing for.
+        /// How many rounds have the AI been playing for. Starts from 0.
         /// </summary>
         private int computerRound = 0;
 
         /// <summary>
-        /// How many rounds can user or computer play.
+        /// How many rounds can user or computer play. Defaults is 9.
         /// </summary>
         private int timeLimit = 9;
 
         /// <summary>
-        /// Length of the code used.
+        /// Length of the code used. Defaults is 4.
         /// </summary>
 
         private int codeLength = 4;
@@ -105,11 +116,27 @@ namespace MasterMind.ConsoleApp
                 Console.WriteLine(StaticConsoleTexts.GameRules);
                 DisplayStartingWindow();
             }
+            else if (option == ThirdOptionKey)
+            {
+                StartNumeralGame();
+            }
             else
             {
                 Console.WriteLine(StaticConsoleTexts.TryAgain);
                 DisplayStartingWindow();
             }
+        }
+
+        /// <summary>
+        /// Start the game where user guesses numbers instead of colors.
+        /// </summary>
+        private void StartNumeralGame()
+        {
+            availableCharacters = "123456789";
+            timeLimit = 20;
+            codeLength = 4;
+            gameType = GameType.Numbers;
+            StartGame();
         }
 
         /// <summary>
@@ -151,6 +178,7 @@ namespace MasterMind.ConsoleApp
             }
             else if (option == SecondOptionKey)
             {
+                gameType = GameType.Colors;
                 StartGame();
             }
             else
@@ -170,19 +198,19 @@ namespace MasterMind.ConsoleApp
             Console.WriteLine($"{StaticConsoleTexts.PossibleColors}\n");
             char userInput = Console.ReadKey().KeyChar;
 
-            if (userInput == '1')
+            if (userInput == FirstOptionKey)
             {
-                availableColorsString = "rgbycm";
+                availableCharacters = "rgbycm";
                 timeLimit = 9;
             }
-            else if (userInput == '2')
+            else if (userInput == SecondOptionKey)
             {
-                availableColorsString = "rgbycmq";
+                availableCharacters = "rgbycmq";
                 timeLimit = 12;
             }
             else
             {
-                availableColorsString = "rgbycmqi";
+                availableCharacters = "rgbycmqi";
                 timeLimit = 15;
             }
         }
@@ -193,11 +221,11 @@ namespace MasterMind.ConsoleApp
         private void AskForCode()
         {
             Console.Clear();
-            Console.WriteLine(DynamicConsoleTexts.GetAskForCodeInformation(4, availableColorsString));
+            Console.WriteLine(DynamicConsoleTexts.GetAskForCodeInformation(4, availableCharacters));
             AI = new HumanStrategy(codeLength);
             string code = Console.ReadLine();
 
-            bool doCharactersExist = !Regex.IsMatch(code, $"[^{availableColorsString}]");
+            bool doCharactersExist = !Regex.IsMatch(code, $"[^{availableCharacters}]");
             if (doCharactersExist || code.Length == codeLength)
             {
                 List<string> combinations = new List<string>();
@@ -265,7 +293,6 @@ namespace MasterMind.ConsoleApp
             }
             else if (userInput == NoOption)
             {
-                char[] score = AskForScore();
                 AskAI(computerAnswer.Item1, code);
             }
             else
@@ -275,29 +302,11 @@ namespace MasterMind.ConsoleApp
         }
 
         /// <summary>
-        /// Ask the user to score computer.
-        /// </summary>
-        /// <returns>Score that is possible to draw in console.</returns>
-        private char[] AskForScore()
-        {
-            Console.WriteLine("\n");
-            Console.WriteLine(StaticConsoleTexts.CorrectAnswers);
-            char[] blacks = new string(Answers.CORRECT_ANSWER, int.Parse(Console.ReadLine())).ToCharArray();
-
-            Console.WriteLine(StaticConsoleTexts.CorrectColors);
-            char[] whites = new string(Answers.COLOR_EXISTS, int.Parse(Console.ReadLine())).ToCharArray();
-
-            char[] empty = new string(Answers.WRONG_GUESS, codeLength - (blacks.Length + whites.Length)).ToCharArray();
-
-            return blacks.Union(whites).Union(empty).ToArray();
-        }
-
-        /// <summary>
         /// Start new game. Display basic information.
         /// </summary>
         private void StartGame()
         {
-            game = new Game(codeLength, timeLimit, availableColorsString);
+            game = new Game(codeLength, timeLimit, availableCharacters);
             Console.WriteLine(DynamicConsoleTexts.GetInformationText(game.CodeLength));
             AskForInput();
         }
@@ -320,7 +329,7 @@ namespace MasterMind.ConsoleApp
         private void TakeInput()
         {
             string input = Console.ReadLine();
-            bool doCharactersExist = !Regex.IsMatch(input, $"[^{availableColorsString}]");
+            bool doCharactersExist = !Regex.IsMatch(input, $"[^{availableCharacters}]");
 
             if (!doCharactersExist)
             {
@@ -372,9 +381,19 @@ namespace MasterMind.ConsoleApp
         {
             foreach (Round round in rounds)
             {
-                foreach (char color in round.Input)
+                if (gameType == GameType.Colors)
                 {
-                    WriteColor(color);
+                    foreach (char color in round.Input)
+                    {
+                        WriteColor(color);
+                    }
+                }
+                else
+                {
+                    foreach (char numeral in round.Input)
+                    {
+                        Console.Write(numeral);
+                    }
                 }
 
                 Console.Write(" ");

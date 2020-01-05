@@ -129,6 +129,7 @@ namespace MasterMind.ConsoleApp.Resources {
         ///Wybierz opcję: 
         ///1 - rozpoczęcie gry.
         ///2 - wyświetlenie zasad gry.
+        ///3 - specjalna wersja gry z cyframi zamiast kolorami
         ///.
         /// </summary>
         internal static string Options {
