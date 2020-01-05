@@ -154,9 +154,28 @@ Wybierz opcję:
 2 - wyświetlenie zasad gry.
 </value>
   </data>
+  <data name="ParameterizeGame" xml:space="preserve">
+    <value>Czy chcesz sparametryzować grę? 
+Wciśnij y - jeśli tak,
+wciśnij n - jeśli nie.</value>
+  </data>
   <data name="PlayAgain" xml:space="preserve">
     <value>
 Chcesz spróbować ponownie? Wciśnij 'y' aby zatwierdzić</value>
+  </data>
+  <data name="PossibleCodeLength" xml:space="preserve">
+    <value>
+Długość kodu może wynosić od 4 do 6. Wpisz długość swojego kodu!</value>
+  </data>
+  <data name="PossibleColors" xml:space="preserve">
+    <value>
+Takie są możliwe kombinacje kolorów: 
+1. rgbycm 
+2. rgbcymq (q - dark yellow) 
+3. rgbcymqi (q - dark yellow, i - dark red).
+Wybierz swoją kombinację.
+
+</value>
   </data>
   <data name="TryAgain" xml:space="preserve">
     <value>

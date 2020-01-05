@@ -16,18 +16,26 @@ namespace MasterMind.Algorithms.Strategies
         {
             Name = "Human Strategy (little too fast)";
         }
+
         /// <summary>
         /// Initialize the strategy to play against humans.
         /// </summary>
         /// <param name="length">Code length.</param>
         public HumanStrategy(int length) : base(length) { }
 
+        /// <summary>
+        /// Initialize the strategy to play against humans with parameters.
+        /// </summary>
+        /// <param name="length">Code length.</param>
+        /// <param name=availableColors">Available colors in a code.</param>
+        public HumanStrategy(int length, string availableColors) : base(length, availableColors) { }
+
         #endregion Constructor
 
         #region Public Methods
 
         /// <summary>
-        /// Ask the AI to guess the code. 
+        /// Ask the AI to guess the code.
         /// </summary>
         /// <param name="combinations">List of combinations remaining.</param>
         /// <param name="secret">Secret code that is used only to count the score in standard Mastermind style. f(b,w)</param>

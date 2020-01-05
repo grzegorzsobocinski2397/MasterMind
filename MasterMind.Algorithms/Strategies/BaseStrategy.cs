@@ -20,6 +20,11 @@ namespace MasterMind.Algorithms.Strategies
         #region Protected Properties
 
         /// <summary>
+        /// Contains all the available colors.
+        /// </summary>
+        protected char[] AvailableColors { get; }
+
+        /// <summary>
         /// Instance of the Mastermind game.
         /// </summary>
         protected Game Game { get; }
@@ -61,6 +66,21 @@ namespace MasterMind.Algorithms.Strategies
         public BaseStrategy(int length)
         {
             CodeLength = length;
+            Game = new Game(length, int.MaxValue);
+            AvailableColors = Game.AvailableColors;
+            Combinations = CreateAllCombinations();
+        }
+
+
+        /// <summary>
+        /// Initialize the strategy just for playing against human with parameterized options.
+        /// </summary>
+        /// <param name="length">Code length.</param>
+        /// <param name="availableColors">Available colors in the code.</param>
+        public BaseStrategy(int length, string availableColors)
+        {
+            CodeLength = length;
+            AvailableColors = availableColors.ToCharArray();
             Game = new Game(length, int.MaxValue);
             Combinations = CreateAllCombinations();
         }
@@ -254,7 +274,7 @@ namespace MasterMind.Algorithms.Strategies
         /// <returns>List of all possibile values.</returns>
         private List<string> CreateAllCombinations()
         {
-            List<char> availableColors = new List<char>(Game.AvailableColors);
+            List<char> availableColors = new List<char>(AvailableColors);
             return new List<string>(GenerateCombinations(availableColors, CodeLength));
         }
 

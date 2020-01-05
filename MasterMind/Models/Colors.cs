@@ -11,5 +11,7 @@
         public const char BLUE = 'b';
         public const char MAGENTA = 'm';
         public const char CYAN = 'c';
+        public const char DARK_YELLOW = 'q';
+        public const char DARK_RED = 'i';
     }
 }

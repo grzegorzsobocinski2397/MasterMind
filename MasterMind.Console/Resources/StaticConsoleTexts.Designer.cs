@@ -138,12 +138,49 @@ namespace MasterMind.ConsoleApp.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Czy chcesz sparametryzować grę? 
+        ///Wciśnij y - jeśli tak,
+        ///wciśnij n - jeśli nie..
+        /// </summary>
+        internal static string ParameterizeGame {
+            get {
+                return ResourceManager.GetString("ParameterizeGame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to 
         ///Chcesz spróbować ponownie? Wciśnij &apos;y&apos; aby zatwierdzić.
         /// </summary>
         internal static string PlayAgain {
             get {
                 return ResourceManager.GetString("PlayAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///Długość kodu może wynosić od 4 do 6. Wpisz długość swojego kodu!.
+        /// </summary>
+        internal static string PossibleCodeLength {
+            get {
+                return ResourceManager.GetString("PossibleCodeLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 
+        ///Takie są możliwe kombinacje kolorów: 
+        ///1. rgbycm 
+        ///2. rgbcymq (q - dark yellow) 
+        ///3. rgbcymqi (q - dark yellow, i - dark red).
+        ///Wybierz swoją kombinację.
+        ///
+        ///.
+        /// </summary>
+        internal static string PossibleColors {
+            get {
+                return ResourceManager.GetString("PossibleColors", resourceCulture);
             }
         }
         

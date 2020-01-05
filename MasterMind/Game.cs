@@ -66,6 +66,21 @@ namespace MasterMind
         #region Constructors
 
         /// <summary>
+        /// Initialize game with parameterized settings.
+        /// </summary>
+        /// <param name="codeLength">Length of the that the user has to guess.</param>
+        /// <param name="timeLimit">Amount of guesses user can make.</param>
+        /// <param name="availableColors">Available colors in this game</param>
+        public Game(int codeLength, int timeLimit, string availableColors)
+        {
+            CodeLength = codeLength;
+            TimeLimit = timeLimit;
+            AvailableColors = availableColors.ToCharArray();
+            User = new User();
+            StartGame();
+        }
+
+        /// <summary>
         /// Change the settings on creation.
         /// </summary>
         /// <param name="codeLength">Length of the that the user has to guess.</param>
