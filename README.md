@@ -20,5 +20,5 @@ These tests are available in the tests project. You can specify how many tests s
   * brute force strategy - checks all the 1296 possibilites (very ineffective),
   * color first strategy - checks all the colors first and then brute force the results (ineffective),
   * calculate possibility - check random code and based on the output decide on the next move (very effective),
-  * calculate first 4 codes: rryya.rgrgb.bbmmc.bcbc and then do the same steps as strategy above (very effective).
+  * calculate first 4 codes: rryy, rgrg, bbmm, bcbc and then do the same steps as strategy above (very effective).
   
